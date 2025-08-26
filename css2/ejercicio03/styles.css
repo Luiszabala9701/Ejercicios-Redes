@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.contenedor-padre{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    max-width: 80vw;
+    margin: auto;
+    background-color: rgb(254, 246, 223);
+}
+
+.contenedor-padre img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+}

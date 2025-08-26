@@ -1,0 +1,36 @@
+*{
+  margin: 0;
+}
+
+.caja1, .caja2, .caja3{
+  width: 50%;
+  margin: auto;
+}
+
+.caja1{
+  background-color: #fffb12;
+  padding: 0;
+}
+
+.caja2{
+  background-color: #0053a5;
+  padding: 0 100px;
+}
+
+.caja3{
+  background-color: #ff2020;
+  padding: 0 100px;
+  box-sizing: border-box;
+}
+
+.subtitulo{
+  background: rgba(119, 119, 119, 0.289);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  display: inline-block;
+}
+
+.info{
+  font-size: 14px;
+}

@@ -1,0 +1,130 @@
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  background:#2bbfaa;
+}
+
+.titulo{
+  font-size:36px;
+  margin: 6px;
+}
+
+.pila{
+  max-width:800px;
+  margin:0 auto;
+  display:block;
+}
+
+/* caja 1 */
+.caja-nota{
+  background:#dcd9db;
+  font-size:14px;
+  border:2px solid rgba(0,0,0,0.18);
+  border-radius:12px;
+  padding:18px;
+  text-align:center;
+  margin-bottom:24px;
+}
+
+@media (max-width:1080px) and (min-width:600px){
+  .caja-nota{ background:#fbf0c2; }
+}
+@media (max-width:599px){
+  .caja-nota{ background:#cfeff1; }
+}
+
+/* caja 2 */
+.caja-radial{
+  height:160px;
+  padding-top:8px;
+  font-size:14px;
+  text-align:center;
+  border-radius:12px;
+  margin-bottom:24px;
+  border:2px solid rgba(0,0,0,0.18);
+  background:radial-gradient(ellipse at center,
+    rgba(255,200,50,0.95) 0%,
+    rgba(255,255,255,0.9) 35%,
+    rgba(255,200,50,0.25) 55%,
+    rgba(255,200,230,0.35) 100%);
+  overflow:hidden;
+}
+
+/* caja 3 */
+.caja-partida{
+  position:relative;
+  height:160px;
+  padding:0;
+  border-radius:10px;
+  margin-bottom:24px;
+  border:2px solid rgba(0,0,0,0.18);
+  background:#fff;
+}
+
+.caja-partida .izquierdo{
+  float:left;
+  width:88px;
+  height:100%;
+  border-top-left-radius:10px;
+  border-bottom-left-radius:10px;
+  background:#6abd26;
+}
+
+.caja-partida .derecho{
+  float:right;
+  width:88px;
+  height:100%;
+  border-top-right-radius:10px;
+  border-bottom-right-radius:10px;
+  background:#15d0c4;
+}
+
+.caja-partida .centro{
+  float:left;            
+  width:calc(100% - 176px);
+  height:100%;
+  text-align:center;
+  line-height:0;
+}
+
+.caja-partida img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  display:block;
+  border-radius:0;
+}
+
+.clear{
+  clear:both;
+}
+
+/* caja 4 */
+.caja-texto{
+  background:linear-gradient(135deg,#fff3e0 0%,#ffe0b2 100%);
+  text-align:left;
+  padding:18px;
+  font-size:15px;
+  border-radius:12px;
+  margin-bottom:24px;
+  border:2px solid rgba(0,0,0,0.18);
+  box-shadow:6px 8px 0 rgba(0,0,0,0.18);
+  color:#111;
+}
+
+/* ajustes móviles */
+@media (max-width:520px){
+  .caja-partida .izquierdo,
+  .caja-partida .derecho{ display:none; }
+  .caja-partida .centro{ margin:0; }
+  .caja-partida img{ height:120px; border-radius:10px; }
+  .titulo{ font-size:28px; }
+  .caja-nota,
+  .caja-radial,
+  .caja-partida,
+  .caja-texto{ padding:14px; }
+}
