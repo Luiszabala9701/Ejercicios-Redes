@@ -14,6 +14,8 @@
     max-width: 80vw;
     margin: auto;
     background-color: rgb(254, 246, 223);
+    overflow-y: auto;
+    height: 100vh;
 }
 
 .contenedor-padre img {
