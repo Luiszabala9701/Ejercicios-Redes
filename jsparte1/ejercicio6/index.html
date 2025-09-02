@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Ejercicio 6</h1>
+    <h2>Modificacion en el input</h2>
+    <input type="text" id="miInput" >
+    <button id="mostrarAlert">Mostrar Valor en un alert</button>
+    <button id="multiplicarPorDos">X2</button>
+    <button id="dividirEntreDos">/2</button>
+    <button id="elevarAlCuadrado">X^2</button>
+    <button id="dosElevado">2^X</button>
+
+    <script>
+        var valorInput = document.getElementById("miInput");
+        document.getElementById("mostrarAlert").addEventListener("click", function() {
+            alert(valorInput.value);
+        });
+
+        document.getElementById("multiplicarPorDos").addEventListener("click", function() {
+            document.getElementById("miInput").value = valorInput.value * 2;
+        });
+
+        document.getElementById("dividirEntreDos").addEventListener("click", function() {
+            document.getElementById("miInput").value = valorInput.value / 2;
+        });
+
+        document.getElementById("elevarAlCuadrado").addEventListener("click", function() {
+            document.getElementById("miInput").value = valorInput.value ** 2;
+        });
+
+        document.getElementById("dosElevado").addEventListener("click", function() {
+            document.getElementById("miInput").value = 2 ** valorInput.value;
+        });
+    </script>
+</body>
+</html>

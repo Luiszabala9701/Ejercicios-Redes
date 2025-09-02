@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 7</title>
+</head>
+<body>
+    <h1>Ejercicio 7: operaciones entre inputs</h1>
+
+    <label for="entrada1">Entrada 1</label>
+    <input type="number" id="entrada1" ><br>
+
+    <label for="entrada2">Entrada 2</label>
+    <input type="number" id="entrada2" ><br>
+
+    <label for="entrada3">Entrada 3</label>
+    <input type="number" id="entrada3" ><br>
+
+    <label for="resultado">Resultado</label>
+    <input type="number" id="resultado" disabled><br>
+
+    <button id="sumar">Sumar</button>
+    <button id="promedio">Promedio</button>
+    <button id="mayor">Mayor</button>
+    <button id="menor">Menor</button>
+
+    <script>
+        var entrada1 = document.getElementById("entrada1");
+        var entrada2 = document.getElementById("entrada2");
+        var entrada3 = document.getElementById("entrada3");
+        var resultado = document.getElementById("resultado");
+
+        document.getElementById("sumar").addEventListener("click", function() {
+            resultado.value = parseInt(entrada1.value) + parseInt(entrada2.value) + parseInt(entrada3.value);
+        });
+
+        document.getElementById("promedio").addEventListener("click", function() {
+            resultado.value = (parseInt(entrada1.value) + parseInt(entrada2.value) + parseInt(entrada3.value)) / 3;
+        });
+
+        document.getElementById("mayor").addEventListener("click", function() {
+            var valor1 = parseInt(entrada1.value);
+            var valor2 = parseInt(entrada2.value);
+            var valor3 = parseInt(entrada3.value);
+            if (valor1 >= valor2 && valor1 >= valor3) {
+                resultado.value = valor1;
+            } else if (valor2 >= valor1 && valor2 >= valor3) {
+                resultado.value = valor2;
+            } else {
+                resultado.value = valor3;
+            }
+        });
+
+        document.getElementById("menor").addEventListener("click", function() {
+            var valor1 = parseInt(entrada1.value);
+            var valor2 = parseInt(entrada2.value);
+            var valor3 = parseInt(entrada3.value);
+            if (valor1 <= valor2 && valor1 <= valor3) {
+                resultado.value = valor1;
+            } else if (valor2 <= valor1 && valor2 <= valor3) {
+                resultado.value = valor2;
+            } else {
+                resultado.value = valor3;
+            }
+        });
+        
+
+    </script>
+
+</body>
+</html>

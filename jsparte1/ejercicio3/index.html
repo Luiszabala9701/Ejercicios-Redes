@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 3</title>
+</head>
+<body>
+    <h1 id="miTitulo">Ejercicio 3</h1>
+    <button onclick="alert('¡Hola! Este es un mensaje de alerta. Usando el atributo onclick')">Mostrar alerta</button>
+    <button id="miBotonWrite">Usar metodo write</button>
+
+    <script>
+
+        document.getElementById("miBotonWrite").addEventListener("click", function() {
+            document.write("¡Hola! Este es un mensaje usando document.write.");
+        });
+    </script>
+</body>
+</html>
