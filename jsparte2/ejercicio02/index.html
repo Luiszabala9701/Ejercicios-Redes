@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 2: Variable de dato de tipo objeto</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Ejercicio 2: Variable de dato de tipo objeto</h1>
+    <main>
+        <div id="contenedorInputs" class="contenedor">
+            <h5>Ingreso de datos de persona:</h5>
+            <div class="fila">
+                <label for="nombre">Nombre:</label>
+                <input id="nombre" type="text" />
+            </div>
+            <div class="fila">
+                <label for="apellido">Apellido:</label>
+                <input id="apellido" type="text" />
+            </div>
+            <div class="fila">
+                <label for="color">Color Favorito:</label>
+                <input id="color" type="text" />
+            </div>
+        </div>
+
+        <div id="contenedorControl" class="contenedor">
+            <h5>Control</h5>
+            <div class="controls">
+                <button id="crear">Crear persona</button>
+                <button id="listar">Listar personas</button>
+                <button id="ocultar">Ocultar presentación</button>
+            </div>
+        </div>
+
+        <div id="contenedorPresentacion" class="contenedor">
+            <div class="info" id="infoCantidad"></div>
+            <div id="tabla"></div>
+        </div>
+    </main>
+    
+    <script>
+        let arregloPersonas = [];
+
+        let inputNombre = document.getElementById('nombre');
+        let inputApellido = document.getElementById('apellido');
+        let inputColor = document.getElementById('color');
+        let btnCrear = document.getElementById('crear');
+        let btnListar = document.getElementById('listar');
+        let btnOcultar = document.getElementById('ocultar');
+        let contenedorPresentacion = document.getElementById('contenedorPresentacion');
+        let tablaWrapper = document.getElementById('tabla');
+        let infoCantidad = document.getElementById('infoCantidad');
+
+        function validarDatos(nombre, apellido, color) {
+
+            if (!nombre || !nombre.trim()) {
+                alert('Debe completar el nombre.');
+                inputNombre.focus();
+                return false;
+            }
+            if (!apellido || !apellido.trim()) {
+                alert('Debe completar el apellido.');
+                inputApellido.focus();
+                return false;
+            }
+            if (!color || !color.trim()) {
+                alert('Debe completar el color favorito.');
+                inputColor.focus();
+                return false;
+            }
+            return true;
+        }
+
+        function crearPersona() {
+            let nombre = inputNombre.value;
+            let apellido = inputApellido.value;
+            let color = inputColor.value;
+
+            if (!validarDatos(nombre, apellido, color)){
+                return;
+            }
+
+            let nuevaPersona = {
+            nombre: nombre.trim(),
+            apellido: apellido.trim(),
+            colorFavorito: color.trim()
+            };
+
+            arregloPersonas.push(nuevaPersona);
+
+            inputNombre.value = '';
+            inputApellido.value = '';
+            inputColor.value = '';
+            inputNombre.focus();
+
+            alert('Persona creada correctamente.');
+        }
+
+        function listarPersonas() {
+            if (!arregloPersonas || arregloPersonas.length === 0) {
+                tablaWrapper.innerHTML = '<em>No hay personas cargadas.</em>';
+                infoCantidad.textContent = 'Cantidad: 0';
+                contenedorPresentacion.style.display = 'block';
+                return;
+            }
+
+            let html = '<table><thead><tr><th>#</th><th>Nombre</th><th>Apellido</th><th>Color Favorito</th></tr></thead><tbody>';
+            arregloPersonas.forEach(function(item, idx) {
+                html += '<tr>';
+                html += '<td>' + (idx + 1) + '</td>';
+                html += '<td>' + item.nombre + '</td>';
+                html += '<td>' + item.apellido + '</td>';
+                html += '<td>' + item.colorFavorito + '</td>';
+                html += '</tr>';
+            });
+            html += '</tbody></table>';
+
+
+            tablaWrapper.innerHTML = html;
+            infoCantidad.textContent = 'Cantidad: ' + arregloPersonas.length;
+            contenedorPresentacion.style.display = 'block';
+        }
+
+        function ocultarPresentacion() {
+            contenedorPresentacion.style.display = 'none';
+        }
+
+        btnCrear.addEventListener('click', crearPersona);
+        btnListar.addEventListener('click', listarPersonas);
+        btnOcultar.addEventListener('click', ocultarPresentacion);
+    </script>
+</body>
+</html>

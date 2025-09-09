@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>ejercicio 3: Validación con keyUp</title>
+</head>
+<body>
+    <h1>Ejercicio validacion con keyUp</h1>
+    <form action="respuesta.html" id="miFormulario">
+        <div class="contenedor">
+            <label for="diaMes">Dia del mes:</label>
+            <input type="number" id="diaMes" name="diaMes" />
+            <label for="mes">Mes:</label>
+            <input type="number" id="mes" name="mes" />
+            <div class="botones">
+                <button id="botonEnviar">Enviar</button>
+                <button id="botonReset">Reset</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        let diaMesInput = document.getElementById('diaMes');
+        let mesInput = document.getElementById('mes');
+        let botonEnviar = document.getElementById('botonEnviar');
+        let botonReset = document.getElementById('botonReset');
+        let form = document.getElementById('miFormulario');
+        
+        diaMesInput.addEventListener('keyup', function() {
+            let dia = parseInt(diaMesInput.value);
+            if (isNaN(dia) || dia < 1 || dia > 31) {
+                alert('Por favor, ingrese un día válido (1-31).');
+            }
+        });
+        mesInput.addEventListener('keyup', function() {
+            let mes = parseInt(mesInput.value);
+            if (isNaN(mes) || mes < 1 || mes > 12) {
+                alert('Por favor, ingrese un mes válido (1-12).');
+            }
+        });
+
+        botonEnviar.addEventListener('click', function(e) {
+            e.preventDefault();
+            form.method = 'get';
+            form.submit();
+        });
+        botonReset.addEventListener('click', function(e) {
+            e.preventDefault();
+            form.reset();
+        });
+    </script>
+</body>
+</html>

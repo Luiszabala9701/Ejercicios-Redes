@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>ejercicio 1: Traducción</title>
+</head>
+<body>
+    <h1>Traducción:</h1>
+    <h2 id="subtitulo">Bienvenido a mi página</h2>
+
+    <script>
+        const subtitulo = document.getElementById('subtitulo');
+        const lenguaje = window.navigator.languages;
+        if (lenguaje[0].startsWith('es')) {
+            subtitulo.innerHTML = 'Bienvenido a mi página';
+        } else if (lenguaje[0].startsWith('en')) {
+            subtitulo.innerHTML = 'Welcome to my page';
+        }
+    </script>
+</body>
+</html>
