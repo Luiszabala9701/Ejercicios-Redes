@@ -14,7 +14,7 @@
             <label for="mes">Mes:</label>
             <input type="number" id="mes" name="mes" />
             <div class="botones">
-                <button id="botonEnviar">Enviar</button>
+                <button  id="botonEnviar">Enviar</button>
                 <button id="botonReset">Reset</button>
             </div>
         </div>
@@ -26,24 +26,35 @@
         let botonEnviar = document.getElementById('botonEnviar');
         let botonReset = document.getElementById('botonReset');
         let form = document.getElementById('miFormulario');
+
+        function verificarDiaMes(dia) {
+            return !isNaN(dia) && dia >= 1 && dia <= 31;
+        }
+        function verificarMes(mes) {
+            return !isNaN(mes) && mes >= 1 && mes <= 12;
+        }
         
         diaMesInput.addEventListener('keyup', function() {
             let dia = parseInt(diaMesInput.value);
-            if (isNaN(dia) || dia < 1 || dia > 31) {
+            if (!verificarDiaMes(dia)) {
                 alert('Por favor, ingrese un día válido (1-31).');
             }
         });
         mesInput.addEventListener('keyup', function() {
-            let mes = parseInt(mesInput.value);
-            if (isNaN(mes) || mes < 1 || mes > 12) {
+            if (!verificarMes(mesInput.value)) {
                 alert('Por favor, ingrese un mes válido (1-12).');
             }
         });
 
         botonEnviar.addEventListener('click', function(e) {
             e.preventDefault();
-            form.method = 'get';
-            form.submit();
+            if (!diaMesInput.value || !mesInput.value || !verificarDiaMes(parseInt(diaMesInput.value)) || !verificarMes(parseInt(mesInput.value))) {
+                alert('Por favor, complete ambos campos antes de enviar.');
+            }
+            else {
+                form.method = 'get';
+                form.submit();
+            }
         });
         botonReset.addEventListener('click', function(e) {
             e.preventDefault();
