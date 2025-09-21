@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 3: Ventana modal</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <div id="contenedor">
+        <h1>Ejercicio 3: Ventana modal</h1>
+        <button id="abrir_modal">Abrir modal</button>
+    </div>
+
+    <div id="fondo_modal">
+        <div id="ventana_modal">
+            <div id="encabezado_modal">
+                <p>Ventana modal</p>
+                <button id="cerrar_modal">X</button>
+            </div>
+            <div id="contenido_modal">
+                <iframe src="../ejercicio1/index.html"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        alert("Ancho de ventana: " + window.innerWidth);
+
+        const botonAbrir = document.getElementById("abrir_modal");
+        const botonCerrar = document.getElementById("cerrar_modal");
+        const contenedor = document.getElementById("contenedor");
+        const fondoModal = document.getElementById("fondo_modal");
+
+        botonAbrir.addEventListener("click", () => {
+            fondoModal.style.display = "flex";
+            contenedor.classList.add("desactivado");
+        });
+
+        botonCerrar.addEventListener("click", () => {
+            fondoModal.style.display = "none";
+            contenedor.classList.remove("desactivado");
+        });
+    </script>
+</body>
+</html>

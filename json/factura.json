@@ -1,4 +1,4 @@
-[
+{ "Factura":[
   {
     "IdFactura": 1,
     "NroFactura": "F-0001",
@@ -120,3 +120,4 @@
     "pdfComprobante": ""
   }
 ]
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Ejercicio 1: Formulario</title>
+</head>
+<body>
+    <header class="encabezado">
+        <h1>Formulario encabezado de factura de compra</h1>
+    </header>
+
+    <main class="principal">
+        <form class="formulario-alta" method="get" action="respuesta.html" id="formAlta">
+            <div class="columna">
+                <label for="IdFactura">IdFactura:</label>
+                <input type="number" id="IdFactura" name="IdFactura" class="campo" required/>
+
+                <label for="NroFactura">NroFactura:</label>
+                <input type="text" id="NroFactura" name="NroFactura" class="campo" required/>
+
+                <label for="CodProveedor">CodProveedor:</label>
+                <input type="text" id="CodProveedor" name="CodProveedor" class="campo" required/>
+
+                <label for="DomicilioProveedor">Domicilio proveedor:</label>
+                <input type="text" id="DomicilioProveedor" name="DomicilioProveedor" class="campo" required/>
+
+                <label for="Fecha_factura">Fecha factura:</label>
+                <input type="date" id="Fecha_factura" name="Fecha_factura" class="campo" required/>
+
+            </div>
+
+            <div class="columna">
+
+                <label for="PlazoDeEntregaCod">Plazo de entrega:</label>
+                <select id="PlazoDeEntregaCod" name="PlazoDeEntregaCod" class="campo" required>
+                </select>
+
+                <label for="Total_Neto_factura">Total neto factura:</label>
+                <input type="number" id="Total_Neto_factura" name="Total_Neto_factura" class="campo" step="0.01" required/>
+
+                <label for="Total_Impuestos">Total impuestos:</label>
+                <input type="number" id="Total_Impuestos" name="Total_Impuestos" class="campo" step="0.01" required/>
+
+                <label for="Moneda">Moneda:</label>
+                <input type="text" id="Moneda" name="Moneda" class="campo" value="ARS" required/>
+            </div>
+
+            <div class="botonera">
+                <button type="submit" class="boton-enviar">ENVIAR</button>
+            </div>
+        </form>
+    </main>
+
+    <footer class="pie">
+        <p>Programación en ambiente de redes - 2025</p>
+        <p>Alumno: Luis Zabala</p>
+        <p>Mail: <i>luis.zabala@comunidad.ub.edu.ar</i></p>
+
+    </footer>
+
+    <script>
+        const textoPlazos = '[{"cod":"PE15","nroDias":15},{"cod":"PE30","nroDias":30},{"cod":"PE60","nroDias":60}]';
+        let plazosEntrega = [];
+        plazosEntrega = JSON.parse(textoPlazos);
+        
+
+        const selectPlazo = document.getElementById('PlazoDeEntregaCod');
+
+        function obtenerNroDiasPorCodigo(cod) {
+            let resultado = null;
+            plazosEntrega.forEach(function(p) {
+                if (p.cod === cod) {
+                resultado = p.nroDias;
+                }
+            });
+            return resultado;
+        }
+
+        function poblarSelectPlazos() {
+            const opcionVacia = document.createElement('option');
+            opcionVacia.value = '';
+            opcionVacia.textContent = '-- Seleccione plazo de entrega --';
+            selectPlazo.appendChild(opcionVacia);
+
+            plazosEntrega.forEach(function(plazo) {
+                const opcion = document.createElement('option');
+                opcion.value = plazo.cod;                    
+                opcion.innerHTML = String(plazo.nroDias) + ' días';
+                selectPlazo.appendChild(opcion);
+            });
+        }
+
+        poblarSelectPlazos();
+  </script>
+</body>
+</html>

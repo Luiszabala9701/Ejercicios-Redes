@@ -1,0 +1,156 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #9be5f6;
+  font-family: Arial, sans-serif;
+  color: #111;
+}
+
+#contenedor {
+    background-color: #9be5f6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#contenedor.desactivado {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.encabezado {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  background: #2087ee;
+  border-bottom: 3px solid #2b7bca;
+}
+
+.encabezado h1 {
+  margin: 0;
+  text-align: center;
+  flex: 1 1 auto;
+  font-size: 18px;
+}
+
+.cont-botones {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  padding: 10px 14px;
+  border: 1px solid #060761;
+  background: #1417a3;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.principal {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.contenedor-tabla {
+  flex: 1 1 auto;
+  width: 100vw;
+  background: #9be5f6;
+  padding: 4px;
+  overflow-y: auto;
+  overflow-x: hidden; 
+}
+
+.tabla-datos {
+  width: 100%;
+  table-layout: fixed; 
+}
+
+.tabla-datos td {
+  padding: 8px;
+  border: 1px solid rgba(0,0,0,0.03);
+  background: rgba(0,0,0,0.03);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tabla-datos tr:first-child td {
+    font-weight: 700;
+    border: 1px solid rgba(0,0,0,0.05);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 50px;
+    background-color: #134e89;
+}
+
+.pie {
+  background: #2087ee;
+  text-align: center;
+  padding: 10px;
+  border-top: 3px solid #2b7bca;
+}
+
+
+
+#fondo_modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#ventana_modal {
+    border-radius: 5px;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+#encabezado_modal {
+    background-color: #8bb8e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+#contenido_modal {
+    flex: 1;
+}
+
+#contenido_modal iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+#cerrar_modal {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #f54848;
+    cursor: pointer;
+}
+#cerrar_modal:hover {
+    color: #920606;
+}
+

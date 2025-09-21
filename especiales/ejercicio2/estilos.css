@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #9be5f6;
+  font-family: Arial, sans-serif;
+  color: #111;
+}
+
+.encabezado {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  background: #2087ee;
+  border-bottom: 3px solid #2b7bca;
+}
+
+.encabezado h1 {
+  margin: 0;
+  text-align: center;
+  flex: 1 1 auto;
+  font-size: 18px;
+}
+
+.cont-botones {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  padding: 10px 14px;
+  border: 1px solid #060761;
+  background: #1417a3;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.principal {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.contenedor-tabla {
+  flex: 1 1 auto;
+  width: 100vw;
+  background: #9be5f6;
+  padding: 8px;
+  overflow-y: auto;
+  overflow-x: hidden; 
+}
+
+.tabla-datos {
+  width: 100%;
+  table-layout: fixed; 
+}
+
+.tabla-datos td {
+  padding: 12px;
+  border: 1px solid rgba(0,0,0,0.03);
+  background: rgba(0,0,0,0.03);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tabla-datos tr:first-child td {
+    font-weight: 700;
+    border: 1px solid rgba(0,0,0,0.05);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 50px;
+    background-color: #134e89;
+}
+
+.pie {
+  background: #2087ee;
+  text-align: center;
+  padding: 10px;
+  border-top: 3px solid #2b7bca;
+}

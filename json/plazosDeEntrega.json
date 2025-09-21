@@ -1,9 +1,10 @@
-[
-  {
-    "cod": "PE15",
-    "nroDias": 15
-  },
-  {
+{
+  "plazos": [
+    {
+      "cod": "PE15",
+      "nroDias": 15
+    },
+    {
     "cod": "PE30",
     "nroDias": 30
   },
@@ -11,4 +12,6 @@
     "cod": "PE60",
     "nroDias": 60
   }
-]
+  ]
+}
+
