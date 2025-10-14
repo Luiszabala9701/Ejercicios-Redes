@@ -2,11 +2,9 @@
 if (isset($_POST['clave'])) {
     $clave = $_POST['clave'];
 
-    // Encriptaciones
     $claveMd5 = md5($clave);
     $claveSha256 = hash('sha256', $clave);
 
-    // Mostrar resultados
     echo "Clave: $clave<br>";
     echo "Clave encriptada en md5 (128 bits o 16 octetos o 16 pares hexadecimales):<br>$claveMd5<br><br>";
     echo "Clave: $clave<br>";
