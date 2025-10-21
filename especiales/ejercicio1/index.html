@@ -13,8 +13,6 @@
     <main class="principal">
         <form class="formulario-alta" method="get" action="respuesta.html" id="formAlta">
             <div class="columna">
-                <label for="IdFactura">IdFactura:</label>
-                <input type="number" id="IdFactura" name="IdFactura" class="campo" required/>
 
                 <label for="NroFactura">NroFactura:</label>
                 <input type="text" id="NroFactura" name="NroFactura" class="campo" required/>
@@ -25,12 +23,14 @@
                 <label for="DomicilioProveedor">Domicilio proveedor:</label>
                 <input type="text" id="DomicilioProveedor" name="DomicilioProveedor" class="campo" required/>
 
-                <label for="Fecha_factura">Fecha factura:</label>
-                <input type="date" id="Fecha_factura" name="Fecha_factura" class="campo" required/>
+                
 
             </div>
 
             <div class="columna">
+                <label for="Fecha_factura">Fecha factura:</label>
+                <input type="date" id="Fecha_factura" name="Fecha_factura" class="campo" required/>
+
 
                 <label for="PlazoDeEntregaCod">Plazo de entrega:</label>
                 <select id="PlazoDeEntregaCod" name="PlazoDeEntregaCod" class="campo" required>
@@ -39,11 +39,6 @@
                 <label for="Total_Neto_factura">Total neto factura:</label>
                 <input type="number" id="Total_Neto_factura" name="Total_Neto_factura" class="campo" step="0.01" required/>
 
-                <label for="Total_Impuestos">Total impuestos:</label>
-                <input type="number" id="Total_Impuestos" name="Total_Impuestos" class="campo" step="0.01" required/>
-
-                <label for="Moneda">Moneda:</label>
-                <input type="text" id="Moneda" name="Moneda" class="campo" value="ARS" required/>
             </div>
 
             <div class="botonera">

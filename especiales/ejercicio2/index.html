@@ -26,7 +26,99 @@
 
 
 <script>
-  const textoFactura = '{"Factura":[{"IdFactura":1,"NroFactura":"F-0001","CodProveedor":"P001","DomicilioProveedor":"Av. Siempreviva 123","Fecha_factura":"2025-09-01","PlazoDeEntregaCod":"PE30","Total_Neto_factura":15000.00,"Total_Impuestos":2850.00,"Moneda":"ARS","pdfComprobante":"comprobante-01.pdf"},{"IdFactura":2,"NroFactura":"F-0002","CodProveedor":"P002","DomicilioProveedor":"Calle Falsa 456","Fecha_factura":"2025-09-05","PlazoDeEntregaCod":"PE15","Total_Neto_factura":8200.50,"Total_Impuestos":1558.10,"Moneda":"ARS","pdfComprobante":"comprobante-02.pdf"},{"IdFactura":3,"NroFactura":"F-0003","CodProveedor":"P003","DomicilioProveedor":"Rivadavia 789","Fecha_factura":"2025-09-10","PlazoDeEntregaCod":"PE60","Total_Neto_factura":23000.00,"Total_Impuestos":4370.00,"Moneda":"ARS","pdfComprobante":"comprobante-03.pdf"},{"IdFactura":4,"NroFactura":"F-0004","CodProveedor":"P004","DomicilioProveedor":"Pueyrredón 101","Fecha_factura":"2025-09-11","PlazoDeEntregaCod":"PE30","Total_Neto_factura":12500.75,"Total_Impuestos":2375.15,"Moneda":"ARS","pdfComprobante":"comprobante-04.pdf"},{"IdFactura":5,"NroFactura":"F-0005","CodProveedor":"P005","DomicilioProveedor":"Belgrano 202","Fecha_factura":"2025-09-12","PlazoDeEntregaCod":"PE15","Total_Neto_factura":5400.00,"Total_Impuestos":1026.00,"Moneda":"ARS","pdfComprobante":"comprobante-05.pdf"},{"IdFactura":6,"NroFactura":"F-0006","CodProveedor":"P006","DomicilioProveedor":"Hipólito Yrigoyen 55","Fecha_factura":"2025-09-13","PlazoDeEntregaCod":"PE60","Total_Neto_factura":19999.99,"Total_Impuestos":3799.99,"Moneda":"ARS","pdfComprobante":"comprobante-06.pdf"},{"IdFactura":7,"NroFactura":"F-0007","CodProveedor":"P007","DomicilioProveedor":"San Martín 303","Fecha_factura":"2025-09-14","PlazoDeEntregaCod":"PE30","Total_Neto_factura":7600.00,"Total_Impuestos":1444.00,"Moneda":"ARS","pdfComprobante":"comprobante-07.pdf"},{"IdFactura":8,"NroFactura":"F-0008","CodProveedor":"P008","DomicilioProveedor":"Moreno 404","Fecha_factura":"2025-09-15","PlazoDeEntregaCod":"PE15","Total_Neto_factura":3100.25,"Total_Impuestos":589.05,"Moneda":"ARS","pdfComprobante":"comprobante-08.pdf"},{"IdFactura":9,"NroFactura":"F-0009","CodProveedor":"P009","DomicilioProveedor":"San Juan 505","Fecha_factura":"2025-09-16","PlazoDeEntregaCod":"PE60","Total_Neto_factura":4444.44,"Total_Impuestos":849.44,"Moneda":"ARS","pdfComprobante":"comprobante-09.pdf"},{"IdFactura":10,"NroFactura":"F-0010","CodProveedor":"P010","DomicilioProveedor":"Corrientes 606","Fecha_factura":"2025-09-17","PlazoDeEntregaCod":"PE30","Total_Neto_factura":10000.00,"Total_Impuestos":1900.00,"Moneda":"ARS","pdfComprobante":"comprobante-10.pdf"}]}';
+  const textoFactura = `{
+  "Factura":[
+  {
+    "NroFactura": "F-0001",
+    "CodProveedor": "P001",
+    "DomicilioProveedor": "Av. Siempreviva 123",
+    "Fecha_factura": "2025-09-01",
+    "PlazoDeEntregaCod": "PE30",
+    "Total_Neto_factura": 15000.00,
+    "pdfComprobante": ""
+  },
+  {
+    "NroFactura": "F-0002",
+    "CodProveedor": "P002",
+    "DomicilioProveedor": "Calle Falsa 456",
+    "Fecha_factura": "2025-09-05",
+    "PlazoDeEntregaCod": "PE15",
+    "Total_Neto_factura": 8200.50,
+    "pdfComprobante": ""
+  },
+  {
+    "NroFactura": "F-0003",
+    "CodProveedor": "P003",
+    "DomicilioProveedor": "Rivadavia 789",
+    "Fecha_factura": "2025-09-10",
+    "PlazoDeEntregaCod": "PE60",
+    "Total_Neto_factura": 23000.00,
+    "pdfComprobante": ""
+  },
+  {
+    "NroFactura": "F-0004",
+    "CodProveedor": "P004",
+    "DomicilioProveedor": "Pueyrredón 101",
+    "Fecha_factura": "2025-09-11",
+    "PlazoDeEntregaCod": "PE30",
+    "Total_Neto_factura": 12500.75,
+    "pdfComprobante": ""
+  },
+  {
+    "NroFactura": "F-0005",
+    "CodProveedor": "P005",
+    "DomicilioProveedor": "Belgrano 202",
+    "Fecha_factura": "2025-09-12",
+    "PlazoDeEntregaCod": "PE15",
+    "Total_Neto_factura": 5400.00,
+    "pdfComprobante": ""
+  },
+  {
+    "NroFactura": "F-0006",
+    "CodProveedor": "P006",
+    "DomicilioProveedor": "Hipólito Yrigoyen 55",
+    "Fecha_factura": "2025-09-13",
+    "PlazoDeEntregaCod": "PE60",
+    "Total_Neto_factura": 19999.99,
+    "pdfComprobante": ""
+  },
+  {
+    "NroFactura": "F-0007",
+    "CodProveedor": "P007",
+    "DomicilioProveedor": "San Martín 303",
+    "Fecha_factura": "2025-09-14",
+    "PlazoDeEntregaCod": "PE30",
+    "Total_Neto_factura": 7600.00,
+    "pdfComprobante": ""
+  },
+  {
+    "NroFactura": "F-0008",
+    "CodProveedor": "P008",
+    "DomicilioProveedor": "Moreno 404",
+    "Fecha_factura": "2025-09-15",
+    "PlazoDeEntregaCod": "PE15",
+    "Total_Neto_factura": 3100.25,
+    "pdfComprobante": ""
+  },
+  {
+    "NroFactura": "F-0009",
+    "CodProveedor": "P009",
+    "DomicilioProveedor": "San Juan 505",
+    "Fecha_factura": "2025-09-16",
+    "PlazoDeEntregaCod": "PE60",
+    "pdfComprobante": ""
+  },
+  {
+    "NroFactura": "F-0010",
+    "CodProveedor": "P010",
+    "DomicilioProveedor": "Corrientes 606",
+    "Fecha_factura": "2025-09-17",
+    "PlazoDeEntregaCod": "PE30",
+    "Total_Neto_factura": 10000.00,
+    "pdfComprobante": ""
+  }
+]
+}`;
 
   const textoPlazos = '[{"cod":"PE15","nroDias":15},{"cod":"PE30","nroDias":30},{"cod":"PE60","nroDias":60}]';
   let plazosEntrega = [];
@@ -38,28 +130,22 @@
   const btnVaciar = document.getElementById('btn-vaciar');
 
   const columnas = [
-    "IdFact",
     "NroFact",
     "CodProv",
     "DomicilioProv",
     "Fecha factura",
     "Plazo de entrega",
     "Total Neto factura",
-    "Total Impuestos",
-    "Moneda",
     "pdfComprobante"
   ];
 
   const mapaColumnas = {
-    "IdFact": "IdFactura",
     "NroFact": "NroFactura",
     "CodProv": "CodProveedor",
     "DomicilioProv": "DomicilioProveedor",
     "Fecha factura": "Fecha_factura",
     "Plazo de entrega": "PlazoDeEntregaCod", 
     "Total Neto factura": "Total_Neto_factura",
-    "Total Impuestos": "Total_Impuestos",
-    "Moneda": "Moneda",
     "pdfComprobante": "pdfComprobante"
   };
 

@@ -19,6 +19,7 @@ body {
   padding: 12px 20px;
   background: #2087ee;
   border-bottom: 3px solid #2b7bca;
+  height: 10%;
 }
 
 .encabezado h1 {
@@ -49,6 +50,7 @@ body {
   padding: 8px;
   gap: 8px;
   overflow: hidden;
+  height: 80%;
 }
 
 .contenedor-tabla {
@@ -89,4 +91,5 @@ body {
   text-align: center;
   padding: 10px;
   border-top: 3px solid #2b7bca;
+  height: 10%;
 }

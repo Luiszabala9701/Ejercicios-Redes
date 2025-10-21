@@ -16,13 +16,15 @@ body {
   text-align: center;
   padding: 12px 8px;
   border-bottom: 3px solid #2b7bca;
+  height: 10%;
 }
 
 .principal {
-  overflow-y: auto;         
+  overflow-y: auto;
   padding: 24px;
   display: flex;
   justify-content: center;
+  height: 80%;
 }
 
 .formulario-alta {
@@ -78,6 +80,7 @@ label {
     text-align: center;
     padding: 10px;
     border-top: 3px solid #2b7bca;
+    height: 10%;
 }
 
 @media (max-width: 800px) {
