@@ -1,25 +1,32 @@
 <?php
-// salidaJsonFactura.php
+// Listado/filtrado/orden de facturas en JSON + logging estilo apunte
 header('Content-Type: application/json; charset=utf-8');
 require_once "datosConexionBase.php";
 
 try {
+    // Log de llegada con query string
+    $puntero = fopen("./errores.log", "a");
+    fwrite($puntero, "llega salidaJsonFactura? " . ($_SERVER['QUERY_STRING'] ?? ''));
+    fwrite($puntero, " | " . date("Y-m-d H:i"));
+    fwrite($puntero, "\n");
+    fclose($puntero);
+
     $pdo = conectarBaseDatos();
 
-    // Filtros de búsqueda
-    $pNroFactura = isset($_GET['NroFactura']) ? trim($_GET['NroFactura']) : '';
+    // Filtros
+    $pNroFactura   = isset($_GET['NroFactura']) ? trim($_GET['NroFactura']) : '';
     $pCodProveedor = isset($_GET['CodProveedor']) ? trim($_GET['CodProveedor']) : '';
-    $pDomicilio = isset($_GET['DomicilioProveedor']) ? trim($_GET['DomicilioProveedor']) : '';
-    $pFecha = isset($_GET['FechaFactura']) ? trim($_GET['FechaFactura']) : '';
-    $pCodPlazo = isset($_GET['CodPlazoEntrega']) ? trim($_GET['CodPlazoEntrega']) : '';
+    $pDomicilio    = isset($_GET['DomicilioProveedor']) ? trim($_GET['DomicilioProveedor']) : '';
+    $pFecha        = isset($_GET['FechaFactura']) ? trim($_GET['FechaFactura']) : '';
+    $pCodPlazo     = isset($_GET['CodPlazoEntrega']) ? trim($_GET['CodPlazoEntrega']) : '';
 
-    // Ordenamiento
+    // Orden
     $allowedColumns = ['NroFactura','CodProveedor','DomicilioProveedor','Fecha_factura','PlazoDeEntregaCod','Total_Neto_factura'];
-    $order_by = (isset($_GET['order_by']) && in_array($_GET['order_by'], $allowedColumns)) ? $_GET['order_by'] : 'NroFactura';
+    $order_by  = (isset($_GET['order_by']) && in_array($_GET['order_by'], $allowedColumns)) ? $_GET['order_by'] : 'NroFactura';
     $order_dir = (isset($_GET['order_dir']) && strtoupper($_GET['order_dir']) === 'DESC') ? 'DESC' : 'ASC';
 
-    // Construcción del WHERE dinámico
-    $where = [];
+    // WHERE dinámico
+    $where  = [];
     $params = [];
 
     if ($pNroFactura !== '') {
@@ -43,13 +50,10 @@ try {
         $params[':PlazoDeEntregaCod'] = $pCodPlazo;
     }
 
-    $sqlWhere = '';
-    if (count($where) > 0) {
-        $sqlWhere = ' WHERE ' . implode(' AND ', $where);
-    }
+    $sqlWhere = (count($where) > 0) ? (' WHERE ' . implode(' AND ', $where)) : '';
 
     // Consulta principal
-    $sql = "SELECT NroFactura, CodProveedor, DomicilioProveedor, Fecha_factura, 
+    $sql = "SELECT NroFactura, CodProveedor, DomicilioProveedor, Fecha_factura,
                    PlazoDeEntregaCod, Total_Neto_factura, pdfComprobante
             FROM facturas
             $sqlWhere
@@ -60,30 +64,33 @@ try {
         $stmt->bindValue($k, $v);
     }
     $stmt->execute();
-    $filas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Contar registros para el footer
+    // Total para footer
     $countSql = "SELECT COUNT(*) FROM facturas $sqlWhere";
     $countStmt = $pdo->prepare($countSql);
     foreach ($params as $k => $v) {
         $countStmt->bindValue($k, $v);
     }
     $countStmt->execute();
-    $total = $countStmt->fetchColumn();
+    $total = (int)$countStmt->fetchColumn();
 
-    echo json_encode(["total" => $total, "rows" => $filas], JSON_UNESCAPED_UNICODE);
-
-} catch (PDOException $error) {
-    // ----- Escritura en el archivo errores.log según el apunte -----
-    $variableDeErroresConcatenados = "Error en salidaJsonFactura: " . $error->getMessage();
-
+    // Log de éxito con cantidad
     $puntero = fopen("./errores.log", "a");
-    fwrite($puntero, $variableDeErroresConcatenados);
-    fwrite($puntero, " | ");
-    fwrite($puntero, date("Y-m-d H:i") . " ");
+    fwrite($puntero, "ok salidaJsonFactura rows=" . count($rows) . " total=" . $total);
+    fwrite($puntero, " | " . date("Y-m-d H:i"));
     fwrite($puntero, "\n");
     fclose($puntero);
-    // ---------------------------------------------------------------
+
+    echo json_encode(["total" => $total, "rows" => $rows], JSON_UNESCAPED_UNICODE);
+
+} catch (PDOException $error) {
+    // Log de error según apunte
+    $puntero = fopen("./errores.log", "a");
+    fwrite($puntero, "Error en salidaJsonFactura: " . $error->getMessage());
+    fwrite($puntero, " | " . date("Y-m-d H:i"));
+    fwrite($puntero, "\n");
+    fclose($puntero);
 
     echo json_encode(["error" => "Error al obtener los datos de facturas."]);
 }
