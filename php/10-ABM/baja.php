@@ -1,4 +1,36 @@
 <?php
+// baja.php
+// Borra un registro de la tabla factura por NroFactura
+header('Content-Type: text/html; charset=utf-8');
+require_once __DIR__ . '/datosConexionBase.php';
+
+$respuesta = "Respuesta del servidor a la baja.<br>";
+try {
+    $pdo = conectarBaseDatos();
+    $NroFactura = $_POST['NroFactura'] ?? '';
+    $respuesta .= "Entradas: Nro=$NroFactura<br>";
+
+    $sql = "DELETE FROM factura WHERE NroFactura = :NroFactura";
+    $stmt = $pdo->prepare($sql);
+    $respuesta .= "Prepare OK<br>";
+    $stmt->bindParam(':NroFactura', $NroFactura);
+    $respuesta .= "Bind OK<br>";
+    $stmt->execute();
+    $cnt = $stmt->rowCount();
+    $respuesta .= "Execute OK, filas eliminadas: $cnt<br>";
+
+} catch (Exception $e) {
+    $respuesta .= "Error: " . htmlspecialchars($e->getMessage()) . "<br>";
+}
+
+$puntero = fopen(__DIR__ . "/errores.log","a");
+fwrite($puntero, date("Y-m-d H:i") . " | baja: " . strip_tags($respuesta) . "\n");
+fclose($puntero);
+
+echo $respuesta;
+
+?>
+<?php
 require_once "datosConexionBase.php";
 header('Content-Type: text/html; charset=utf-8');
 

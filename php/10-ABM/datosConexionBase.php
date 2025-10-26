@@ -1,4 +1,15 @@
 <?php
+// Compatibilidad: wrapper para proyectos que usan conectarBaseDatos()
+require_once __DIR__ . '/datosConexionBase.inc.php';
+
+if (!function_exists('conectarBaseDatos')) {
+  function conectarBaseDatos() {
+    return obtenerPdo();
+  }
+}
+
+?>
+<?php
 // datosConexionBase.php
 function conectarBaseDatos() {
   $servidor = "localhost";

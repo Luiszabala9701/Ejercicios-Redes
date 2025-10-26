@@ -1,4 +1,40 @@
 <?php
+// traeDoc.php
+// Devuelve el PDF almacenado en PdfComprobante para un NroFactura
+require_once __DIR__ . '/datosConexionBase.php';
+
+if (!isset($_GET['NroFactura'])) {
+    http_response_code(400);
+    echo "Falta parámetro NroFactura";
+    exit;
+}
+$nro = $_GET['NroFactura'];
+
+try {
+    $pdo = conectarBaseDatos();
+    $sql = "SELECT PdfComprobante FROM factura WHERE NroFactura = :Nro";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':Nro', $nro);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$row || empty($row['PdfComprobante'])) {
+        http_response_code(404);
+        echo "PDF no encontrado";
+        exit;
+    }
+    $pdf = $row['PdfComprobante'];
+    // Enviar cabeceras
+    header('Content-Type: application/pdf');
+    header('Content-Disposition: inline; filename="comprobante_'.$nro.'.pdf"');
+    echo $pdf;
+
+} catch (Exception $e) {
+    http_response_code(500);
+    echo "Error: " . htmlspecialchars($e->getMessage());
+}
+
+?>
+<?php
 require_once "datosConexionBase.php";
 header('Content-Type: application/json; charset=utf-8');
 
