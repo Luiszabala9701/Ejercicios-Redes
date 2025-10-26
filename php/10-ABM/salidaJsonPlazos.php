@@ -3,7 +3,7 @@ header('Content-Type: application/json; charset=utf-8');
 require_once "datosConexionBase.php";
 
 try {
-    sleep(1); 
+    sleep(1);
 
     $puntero = fopen("./errores.log", "a");
     fwrite($puntero, "llega salidaJsonPlazos");

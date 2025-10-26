@@ -11,12 +11,14 @@ try {
 
     $pdo = conectarBaseDatos();
 
+    // Filtros
     $pNroFactura   = isset($_GET['NroFactura']) ? trim($_GET['NroFactura']) : '';
     $pCodProveedor = isset($_GET['CodProveedor']) ? trim($_GET['CodProveedor']) : '';
     $pDomicilio    = isset($_GET['DomicilioProveedor']) ? trim($_GET['DomicilioProveedor']) : '';
     $pFecha        = isset($_GET['FechaFactura']) ? trim($_GET['FechaFactura']) : '';
     $pCodPlazo     = isset($_GET['CodPlazoEntrega']) ? trim($_GET['CodPlazoEntrega']) : '';
 
+    // Orden - nombres de columnas corregidos según tu DB
     $allowedColumns = ['NroFactura','CodProveedor','DomicilioProveedor','FechaFactura','CodPlazosEntrega','TotalNetoFactura'];
     $order_by  = (isset($_GET['order_by']) && in_array($_GET['order_by'], $allowedColumns)) ? $_GET['order_by'] : 'NroFactura';
     $order_dir = (isset($_GET['order_dir']) && strtoupper($_GET['order_dir']) === 'DESC') ? 'DESC' : 'ASC';

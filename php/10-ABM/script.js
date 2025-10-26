@@ -1,7 +1,4 @@
-// script.js - actualización para consumir los endpoints PHP
-
 document.addEventListener('DOMContentLoaded', function() {
-  // elementos
   const contenedorTabla = document.getElementById('contenedor-tabla');
   const btnCargar = document.getElementById('btn-cargar');
   const btnVaciar = document.getElementById('btn-vaciar');
@@ -12,26 +9,20 @@ document.addEventListener('DOMContentLoaded', function() {
   const selectPlazo = document.getElementById('PlazoDeEntregaCod');
   const formularioAlta = document.getElementById('formAlta');
 
-  // filtros (suponiendo que agregaste inputs con estos ids en tu index.php o los crearás)
   const inputNroFactura = document.getElementById('NroFacturaFiltro') || null;
   const inputCodProveedor = document.getElementById('CodProveedorFiltro') || null;
   const inputDomicilio = document.getElementById('DomicilioProveedorFiltro') || null;
   const inputFecha = document.getElementById('FechaFacturaFiltro') || null;
   const inputCodPlazoFiltro = document.getElementById('CodPlazoFiltro') || null;
 
-  // estado de ordenamiento
   let orderBy = 'NroFactura';
   let orderDir = 'ASC';
 
-  // ---------------------------
-  // Cargar plazos (alert post-carga)
-  // ---------------------------
   function cargarPlazos() {
     fetch('salidaJsonPlazos.php')
       .then(resp => resp.json())
       .then(data => {
         alert('ALERTA: JSON de plazosentrega:\n' + JSON.stringify(data));
-        // poblar select
         if (selectPlazo && data.plazos) {
           selectPlazo.innerHTML = '<option value="">-- Seleccione plazo de entrega --</option>';
           data.plazos.forEach(p => {
@@ -42,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
           });
         }
 
-        // Si existe filter select aparte
         if (inputCodPlazoFiltro && data.plazos) {
           inputCodPlazoFiltro.innerHTML = '<option value="">-- --</option>';
           data.plazos.forEach(p => {
@@ -59,12 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   }
 
-  // Cargar plazos al inicio (requisito: alerta de carga)
   cargarPlazos();
 
-  // ---------------------------
-  // Construir querystring con filtros y orden
-  // ---------------------------
   function construirQuery() {
     const params = new URLSearchParams();
 
@@ -77,16 +63,12 @@ document.addEventListener('DOMContentLoaded', function() {
     params.append('order_by', orderBy);
     params.append('order_dir', orderDir);
 
-    // pagination optional
     params.append('limit', 100);
     params.append('offset', 0);
 
     return params.toString();
   }
 
-  // ---------------------------
-  // Mostrar "Esperando respuesta" en tbody
-  // ---------------------------
   function mostrarEsperandoRespuesta() {
     contenedorTabla.innerHTML = '';
     const tabla = document.createElement('table');
@@ -94,18 +76,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const thead = document.createElement('thead');
     const trHead = document.createElement('tr');
-    // CORREGIDO: nombres de columnas según tu DB
+
     ['NroFactura','CodProveedor','DomicilioProveedor','FechaFactura','CodPlazosEntrega','TotalNetoFactura','PdfComprobante']
       .forEach(col => {
         const th = document.createElement('th');
         th.textContent = col;
         th.style.cursor = 'pointer';
         th.dataset.col = col;
-        // manejo de click para ordenar
+        
         th.addEventListener('click', () => {
           if (orderBy === col) orderDir = (orderDir === 'ASC') ? 'DESC' : 'ASC';
           else { orderBy = col; orderDir = 'ASC'; }
-          // recargar con nuevo orden
+          
           cargarDatos();
         });
         trHead.appendChild(th);
@@ -122,7 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
     tbody.appendChild(tr);
     tabla.appendChild(tbody);
 
-    // tfoot con espacio para total
     const tfoot = document.createElement('tfoot');
     const trFoot = document.createElement('tr');
     const tdFoot = document.createElement('td');
@@ -136,25 +117,22 @@ document.addEventListener('DOMContentLoaded', function() {
     contenedorTabla.appendChild(tabla);
   }
 
-  // ---------------------------
-  // Renderizar datos
-  // ---------------------------
   function renderizarTabla(rows, total) {
     contenedorTabla.innerHTML = '';
     const tabla = document.createElement('table');
     tabla.className = 'tabla-datos';
 
-    // header
+   
     const thead = document.createElement('thead');
     const trHead = document.createElement('tr');
-    // CORREGIDO: nombres de columnas según tu DB
+    
     const columnas = ['NroFactura','CodProveedor','DomicilioProveedor','FechaFactura','CodPlazosEntrega','TotalNetoFactura','PdfComprobante'];
     columnas.forEach(col => {
       const th = document.createElement('th');
       th.textContent = col;
       th.style.cursor = 'pointer';
       th.dataset.col = col;
-      // click para ordenar
+      
       th.addEventListener('click', () => {
         if (orderBy === col) orderDir = (orderDir === 'ASC') ? 'DESC' : 'ASC';
         else { orderBy = col; orderDir = 'ASC'; }
@@ -165,13 +143,13 @@ document.addEventListener('DOMContentLoaded', function() {
     thead.appendChild(trHead);
     tabla.appendChild(thead);
 
-    // tbody
+    
     const tbody = document.createElement('tbody');
     rows.forEach(item => {
       const tr = document.createElement('tr');
       columnas.forEach(c => {
         const td = document.createElement('td');
-        // mapear nombres si es necesario
+        
         td.textContent = item[c] !== null && item[c] !== undefined ? item[c] : '';
         tr.appendChild(td);
       });
@@ -179,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     tabla.appendChild(tbody);
 
-    // tfoot
+   
     const tfoot = document.createElement('tfoot');
     const trFoot = document.createElement('tr');
     const tdFoot = document.createElement('td');
@@ -192,23 +170,19 @@ document.addEventListener('DOMContentLoaded', function() {
     contenedorTabla.appendChild(tabla);
   }
 
-  // ---------------------------
-  // Cargar datos desde servidor (con alert pre y post)
-  // ---------------------------
+ 
   function cargarDatos() {
     const query = construirQuery();
     const url = 'salidaJsonFactura.php?' + query;
 
-    // Alerta pre-Ajax con la URL (cadena de parámetros)
     alert('ALERTA PRE-AJAX:\n' + url);
 
-    // Mostrar esperando
+    
     mostrarEsperandoRespuesta();
 
     fetch(url)
       .then(resp => resp.json())
       .then(data => {
-        // Alerta post-respuesta
         alert('ALERTA POST-RESPUESTA:\n' + JSON.stringify(data));
 
         if (data.error) {
@@ -216,8 +190,6 @@ document.addEventListener('DOMContentLoaded', function() {
           renderizarTabla([], 0);
           return;
         }
-
-        // data.rows y data.total
         renderizarTabla(data.rows || [], data.total || 0);
       })
       .catch(err => {
@@ -227,14 +199,12 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   }
 
-  // Vaciar datos (elimina el tbody)
+ 
   function vaciarDatos() {
     contenedorTabla.innerHTML = '';
   }
 
-  // ---------------------------
-  // Eventos
-  // ---------------------------
+
   btnCargar.addEventListener('click', cargarDatos);
   btnVaciar.addEventListener('click', vaciarDatos);
 
@@ -248,9 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
     contenedor.classList.remove("desactivado");
   });
 
-  // ---------------------------
-  // Manejo del formulario dentro del modal
-  // ---------------------------
+
   if (formularioAlta) {
     const contenidoModal = document.getElementById('contenido_modal');
     const contenidoOriginal = contenidoModal.innerHTML;
@@ -258,14 +226,14 @@ document.addEventListener('DOMContentLoaded', function() {
     formularioAlta.addEventListener('submit', function(e) {
       e.preventDefault();
 
-      // Recoger datos del formulario
+ 
       const formData = new FormData(formularioAlta);
       const datos = {};
       for (let [key, value] of formData.entries()) {
         datos[key] = value;
       }
 
-      // Crear HTML de respuesta sin estilos inline
+ 
       const htmlRespuesta = `
         <div class="encabezadoFormulario">
           <h2>Datos enviados correctamente</h2>
@@ -309,25 +277,18 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       `;
 
-      // Reemplazar contenido del modal
       contenidoModal.innerHTML = htmlRespuesta;
 
-      // Evento para volver al formulario
       document.getElementById('btnVolverFormulario').addEventListener('click', function() {
         contenidoModal.innerHTML = contenidoOriginal;
         
-        // Re-adjuntar el event listener
         const nuevoForm = document.getElementById('formAlta');
         if (nuevoForm) {
           nuevoForm.addEventListener('submit', arguments.callee);
         }
-        
-        // Re-poblar select de plazos
+
         cargarPlazos();
       });
     });
   }
-
-  // Si querés cargar datos al inicio, podés llamar:
-  // cargarDatos();
 });

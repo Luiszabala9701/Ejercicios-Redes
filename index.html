@@ -4,79 +4,176 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Programación en ambiente de redes</title>
+    <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-    <h1>Indice Ejercicios:</h1>
-    <h3>HTML:</h3>
-    <ul>
-        <li><a href="html/ejer01PreguntasHTTP/index.html">Ejercicio 1: HTTP</a></li>
-        <li><a href="html/ejer02Tablas/index.html">Ejercicio 2: Tablas</a></li>
-        <li><a href="html/ejer03Formulario/index.html">Ejercicio3: Formulario</a></li>
-        <li><a href="#">Ejercicio 4: iframe</a></li>
-    </ul>
-    <h3>CSS Parte 1:</h3>
-    <ul>
-        <li><a href="#">Ejercicio 1: Estilos en el head</a></li>
-        <li><a href="#">Ejercicio 2: Selectores de clase</a></li>
-        <li><a href="#">Ejercicio 3:Style en un File</a></li>
-        <li><a href="#">Ejercicio 3:FontSize</a></li>
-        <li><a href="#">Ejercicio 3:Background fijo</a></li>
-        <li><a href="#">Ejercicio 3:Centrado y padding</a></li>
-        <li><a href="#">Ejercicio 3:Divs en pila</a></li>
-        <li><a href="#">Ejercicio 3:Divs en fila</a></li>
-    </ul>
-    <h3>CSS Parte 2:</h3>
-    <ul>
-        <li><a href="css2/ejercicio01/index.html">Ejercicio 1:Divs Relativos</a></li>
-        <li><a href="css2/Ejercicio02/index.html">Ejercicio 2:Divs absolutos</a></li>
-        <li><a href="css2/ejercicio03/index.html">Ejercicio 3:Centrado FlexBox</a></li>
-    </ul>
-    <h3>JS parte 1:</h3>
-    <ul>
-        <li><a href="">Ejercicio 1: Sentencias</a></li>
-        <li><a href="jsparte1/ejercicio2/index.html">Ejercicio 2: devTools</a></li>
-        <li><a href="jsparte1/ejercicio3/index.html">Ejercicio 3: Evento click</a></li>
-        <li><a href="#">Ejercicio 4: Variables simples</a></li>
-        <li><a href="jsparte1/ejercicio5/index.html">Ejercicio 5: Alcnace</a></li>
-        <li><a href="jsparte1/ejercicio6/index.html">Ejercicio 6: Operaciones sobre un input</a></li>
-        <li><a href="jsparte1/ejercicio7/index.html">Ejercicio 7: Operaciones entre inputs</a></li>
-        <li><a href="#">Ejercicio 8: Calculadora</a></li>
-        <li><a href="jsparte1/ejercicio9/index.html">Ejercicio 9: Convertir a mayúsculas</a></li>
-        <li><a href="#">Ejercicio 10: Funcion flecha</a></li>
-        <li><a href="#">Ejercicio 11: Location</a></li>
-    </ul>
+    <div class="container">
+        <header>
+            <h1>📚 Índice de Ejercicios</h1>
+            <p>Programación en Ambiente de Redes - 2025</p>
+        </header>
 
-    <h3>JS parte 2</h3>
-    <ul>
-        <li><a href="jsparte2/ejercicio01/index.html">Ejercicio 1: Traducción</a></li>
-        <li><a href="jsparte2/ejercicio02/index.html">ejercicio 2: Variable de dato de tipo objeto</a></li>
-        <li><a href="jsparte2/ejercicio03/index.html">ejercicio 3: Validación con keyUp</a></li>
-    </ul>
-    <h3>JSON:</h3>
-    <ul>
-        <li><a href="json/factura.json">Factura</a></li>
-        <li><a href="json/plazosDeEntrega.json">Plazos de Entrega</a></li>
-    </ul>
-    <h3>Especiales:</h3>
-    <ul>
-        <li><a href="especiales/ejercicio1/index.html">Ejercicio 1: Formulario de alta</a></li>
-        <li><a href="especiales/ejercicio2/index.html">Ejercicio 2: Tabla con objetos</a></li>
-        <li><a href="especiales/ejercicio3/index.html">Ejercicio 3: Ventana modal</a></li>
-        <li><a href="especiales/ejercicio4/index.html">Ejercicio 4: Tabla con formulario</a></li>
-    </ul>
+        <div class="content">
+            <!-- HTML -->
+            <div class="categoria activa">
+                <div class="categoria-header">
+                    <h3>HTML</h3>
+                    <span class="icono">▼</span>
+                </div>
+                <div class="categoria-content">
+                    <ul>
+                        <li><a href="html/ejer01PreguntasHTTP/index.html">Ejercicio 1: HTTP</a></li>
+                        <li><a href="html/ejer02Tablas/index.html">Ejercicio 2: Tablas</a></li>
+                        <li><a href="html/ejer03Formulario/index.html">Ejercicio 3: Formulario</a></li>
+                        <li><a href="#">Ejercicio 4: iframe</a></li>
+                    </ul>
+                </div>
+            </div>
 
-    <h3>PHP</h3>
-    <ul>
-        <li><a href="php/1-phpInfo/index.php">PHP info</a></li>
-        <li><a href="php/2-phpBase/index.php">php base</a></li>
-        <li><a href="php/3-phpInclude/index.php">php include</a></li>
-        <li><a href="php/4-variablesGlobales/index.php">php variables globales</a></li>
-        <li><a href="php/5-variablesObjetos/index.php">php variables de tipo objetos</a></li>
-        <li><a href="php/6-lecturaFormulario/index.php">php lectura formulario</a></li>
-        <li><a href="php/7-formToEncrypt/index.php">php formulario para encriptar</a></li>
-        <li><a href="php/8-ajax/index.php">php formulario con ajax</a></li>
-        <li><a href="php/9-phpOrdenamientoFiltos/index.php">php ordenamiento y filtros</a></li>
-    </ul>
+            <!-- CSS Parte 1 -->
+            <div class="categoria">
+                <div class="categoria-header">
+                    <h3>CSS Parte 1</h3>
+                    <span class="icono">▼</span>
+                </div>
+                <div class="categoria-content">
+                    <ul>
+                        <li><a href="#">Ejercicio 1: Estilos en el head</a></li>
+                        <li><a href="#">Ejercicio 2: Selectores de clase</a></li>
+                        <li><a href="#">Ejercicio 3: Style en un File</a></li>
+                        <li><a href="#">Ejercicio 4: FontSize</a></li>
+                        <li><a href="#">Ejercicio 5: Background fijo</a></li>
+                        <li><a href="#">Ejercicio 6: Centrado y padding</a></li>
+                        <li><a href="#">Ejercicio 7: Divs en pila</a></li>
+                        <li><a href="#">Ejercicio 8: Divs en fila</a></li>
+                    </ul>
+                </div>
+            </div>
 
+            <!-- CSS Parte 2 -->
+            <div class="categoria">
+                <div class="categoria-header">
+                    <h3>CSS Parte 2</h3>
+                    <span class="icono">▼</span>
+                </div>
+                <div class="categoria-content">
+                    <ul>
+                        <li><a href="css2/ejercicio01/index.html">Ejercicio 1: Divs Relativos</a></li>
+                        <li><a href="css2/Ejercicio02/index.html">Ejercicio 2: Divs absolutos</a></li>
+                        <li><a href="css2/ejercicio03/index.html">Ejercicio 3: Centrado FlexBox</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- JS Parte 1 -->
+            <div class="categoria">
+                <div class="categoria-header">
+                    <h3>JavaScript Parte 1</h3>
+                    <span class="icono">▼</span>
+                </div>
+                <div class="categoria-content">
+                    <ul>
+                        <li><a href="#">Ejercicio 1: Sentencias</a></li>
+                        <li><a href="jsparte1/ejercicio2/index.html">Ejercicio 2: devTools</a></li>
+                        <li><a href="jsparte1/ejercicio3/index.html">Ejercicio 3: Evento click</a></li>
+                        <li><a href="#">Ejercicio 4: Variables simples</a></li>
+                        <li><a href="jsparte1/ejercicio5/index.html">Ejercicio 5: Alcance</a></li>
+                        <li><a href="jsparte1/ejercicio6/index.html">Ejercicio 6: Operaciones sobre un input</a></li>
+                        <li><a href="jsparte1/ejercicio7/index.html">Ejercicio 7: Operaciones entre inputs</a></li>
+                        <li><a href="#">Ejercicio 8: Calculadora</a></li>
+                        <li><a href="jsparte1/ejercicio9/index.html">Ejercicio 9: Convertir a mayúsculas</a></li>
+                        <li><a href="#">Ejercicio 10: Función flecha</a></li>
+                        <li><a href="#">Ejercicio 11: Location</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- JS Parte 2 -->
+            <div class="categoria">
+                <div class="categoria-header">
+                    <h3>JavaScript Parte 2</h3>
+                    <span class="icono">▼</span>
+                </div>
+                <div class="categoria-content">
+                    <ul>
+                        <li><a href="jsparte2/ejercicio01/index.html">Ejercicio 1: Traducción</a></li>
+                        <li><a href="jsparte2/ejercicio02/index.html">Ejercicio 2: Variable de dato de tipo objeto</a></li>
+                        <li><a href="jsparte2/ejercicio03/index.html">Ejercicio 3: Validación con keyUp</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- JSON -->
+            <div class="categoria">
+                <div class="categoria-header">
+                    <h3>JSON</h3>
+                    <span class="icono">▼</span>
+                </div>
+                <div class="categoria-content">
+                    <ul>
+                        <li><a href="json/factura.json">Factura</a></li>
+                        <li><a href="json/plazosDeEntrega.json">Plazos de Entrega</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Especiales -->
+            <div class="categoria">
+                <div class="categoria-header">
+                    <h3>Ejercicios Especiales</h3>
+                    <span class="icono">▼</span>
+                </div>
+                <div class="categoria-content">
+                    <ul>
+                        <li><a href="especiales/ejercicio1/index.html">Ejercicio 1: Formulario de alta</a></li>
+                        <li><a href="especiales/ejercicio2/index.html">Ejercicio 2: Tabla con objetos</a></li>
+                        <li><a href="especiales/ejercicio3/index.html">Ejercicio 3: Ventana modal</a></li>
+                        <li><a href="especiales/ejercicio4/index.html">Ejercicio 4: Tabla con formulario</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PHP -->
+            <div class="categoria">
+                <div class="categoria-header">
+                    <h3>PHP</h3>
+                    <span class="icono">▼</span>
+                </div>
+                <div class="categoria-content">
+                    <ul>
+                        <li><a href="php/1-phpInfo/index.php">PHP info</a></li>
+                        <li><a href="php/2-phpBase/index.php">PHP base</a></li>
+                        <li><a href="php/3-phpInclude/index.php">PHP include</a></li>
+                        <li><a href="php/4-variablesGlobales/index.php">PHP variables globales</a></li>
+                        <li><a href="php/5-variablesObjetos/index.php">PHP variables de tipo objetos</a></li>
+                        <li><a href="php/6-lecturaFormulario/index.php">PHP lectura formulario</a></li>
+                        <li><a href="php/7-formToEncrypt/index.php">PHP formulario para encriptar</a></li>
+                        <li><a href="php/8-ajax/index.php">PHP formulario con AJAX</a></li>
+                        <li><a href="php/9-phpOrdenamientoFiltos/index.php">PHP ordenamiento y filtros</a></li>
+                        <li><a href="php/10-ABM/index.html">ABM</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>Alumno:</strong> Luis Zabala</p>
+            <p><strong>Mail:</strong> <a href="mailto:luis.zabala@comunidad.ub.edu.ar">luis.zabala@comunidad.ub.edu.ar</a></p>
+            <p>Universidad de Belgrano - 2025</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const categorias = document.querySelectorAll('.categoria-header');
+            
+            categorias.forEach(header => {
+                header.addEventListener('click', function() {
+                    const categoria = this.parentElement;
+                    categoria.classList.toggle('activa');
+                });
+            });
+        });
+    </script>
 </body>
 </html>

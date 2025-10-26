@@ -3,7 +3,7 @@
 function conectarBaseDatos() {
     $servidor = "auth-db887.hstgr.io";     
     $usuario = "u889835150_luisz9701";           
-    $clave = "s+XxKG4=bV";                
+    $clave = "s+XxKG4=bV";                 
     $baseDatos = "u889835150_Encabezado_Fac";
 
     try {
@@ -13,12 +13,12 @@ function conectarBaseDatos() {
     } catch (PDOException $error) {
         $variableDeErroresConcatenados = "Error de conexión: " . $error->getMessage();
 
-        $puntero = fopen("./errores.log", "a"); 
-        fwrite($puntero, $variableDeErroresConcatenados); 
-        fwrite($puntero, " | "); 
-        fwrite($puntero, date("Y-m-d H:i") . " "); 
-        fwrite($puntero, "\n"); 
-        fclose($puntero); 
+        $puntero = fopen("./errores.log", "a");
+        fwrite($puntero, $variableDeErroresConcatenados);
+        fwrite($puntero, " | ");
+        fwrite($puntero, date("Y-m-d H:i") . " ");
+        fwrite($puntero, "\n");
+        fclose($puntero);
 
         echo json_encode(["error" => "No se pudo conectar a la base de datos."]);
         exit;

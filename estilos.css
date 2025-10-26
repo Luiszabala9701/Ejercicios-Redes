@@ -1,0 +1,236 @@
+/* Reset y configuración base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+  color: #333;
+}
+
+/* Contenedor principal */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+/* Encabezado */
+header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+header p {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* Contenido principal */
+.content {
+  padding: 30px;
+}
+
+/* Sección de categoría */
+.categoria {
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.categoria:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Encabezado de categoría (desplegable) */
+.categoria-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 15px 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  transition: background 0.3s ease;
+}
+
+.categoria-header:hover {
+  background: linear-gradient(135deg, #5568d3 0%, #63398d 100%);
+}
+
+.categoria-header h3 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.categoria-header .icono {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.categoria.activa .categoria-header .icono {
+  transform: rotate(180deg);
+}
+
+/* Contenido de categoría (lista) */
+.categoria-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background: #f9f9f9;
+}
+
+.categoria.activa .categoria-content {
+  max-height: 1000px;
+}
+
+.categoria-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.categoria-content li {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.categoria-content li:last-child {
+  border-bottom: none;
+}
+
+.categoria-content a {
+  display: block;
+  padding: 15px 20px;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-left: 45px;
+}
+
+.categoria-content a:before {
+  content: "→";
+  position: absolute;
+  left: 20px;
+  color: #667eea;
+  font-weight: bold;
+  transition: left 0.3s ease;
+}
+
+.categoria-content a:hover {
+  background: white;
+  color: #667eea;
+  padding-left: 50px;
+}
+
+.categoria-content a:hover:before {
+  left: 25px;
+}
+
+/* Enlaces deshabilitados */
+.categoria-content a[href="#"] {
+  color: #999;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.categoria-content a[href="#"]:before {
+  content: "✕";
+  color: #999;
+}
+
+.categoria-content a[href="#"]:hover {
+  background: #f9f9f9;
+  padding-left: 45px;
+}
+
+.categoria-content a[href="#"]:hover:before {
+  left: 20px;
+}
+
+/* Footer */
+footer {
+  background: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: #667eea;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .content {
+    padding: 15px;
+  }
+
+  .categoria-header h3 {
+    font-size: 1rem;
+  }
+
+  .categoria-content a {
+    padding: 12px 15px;
+    padding-left: 40px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.categoria {
+  animation: fadeIn 0.5s ease;
+}
+
+.categoria:nth-child(1) { animation-delay: 0.1s; }
+.categoria:nth-child(2) { animation-delay: 0.2s; }
+.categoria:nth-child(3) { animation-delay: 0.3s; }
+.categoria:nth-child(4) { animation-delay: 0.4s; }
+.categoria:nth-child(5) { animation-delay: 0.5s; }
+.categoria:nth-child(6) { animation-delay: 0.6s; }
+.categoria:nth-child(7) { animation-delay: 0.7s; }
+.categoria:nth-child(8) { animation-delay: 0.8s; }

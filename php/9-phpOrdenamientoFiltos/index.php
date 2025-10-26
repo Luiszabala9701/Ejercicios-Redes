@@ -1,12 +1,9 @@
 <?php
-// datosConexionBase.php
-// Configuración de conexión. Ajustá los valores según tu hosting (Hostinger).
-$DB_HOST = 'localhost';
-$DB_NAME = 'facturacion';      // <-- ajustá si tu BD tiene otro nombre
-$DB_USER = 'tu_usuario';       // <-- ajustá
-$DB_PASS = 'tu_pass';          // <-- ajustá
+$DB_HOST = 'auth-db887.hstgr.io';
+$DB_NAME = 'u889835150_Encabezado_Fac';  
+$DB_USER = 'u889835150_luisz9701';      
+$DB_PASS = 's+XxKG4=bV';        
 
-// Ruta para el log de errores (relativa al proyecto)
 define('ERROR_LOG_FILE', __DIR__ . '/errores.log');
 
 function obtenerConexion() {
@@ -20,7 +17,6 @@ function obtenerConexion() {
         ]);
         return $pdo;
     } catch (PDOException $e) {
-        // Log y respuesta mínima para evitar filtrar credenciales en la salida
         $msg = date('Y-m-d H:i:s') . " - Error conexión DB: " . $e->getMessage() . PHP_EOL;
         error_log($msg, 3, ERROR_LOG_FILE);
         http_response_code(500);

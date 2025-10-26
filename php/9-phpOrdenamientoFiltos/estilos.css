@@ -76,26 +76,44 @@ body {
 
 .tabla-datos {
   width: 100%;
-  table-layout: fixed; 
+  table-layout: fixed;
+  border-collapse: collapse;
 }
 
+.tabla-datos th,
 .tabla-datos td {
   padding: 8px;
-  border: 1px solid rgba(0,0,0,0.03);
-  background: rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.1);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.tabla-datos tr:first-child td {
-    font-weight: 700;
-    border: 1px solid rgba(0,0,0,0.05);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    height: 50px;
-    background-color: #134e89;
+.tabla-datos td {
+  background: rgba(255,255,255,0.8);
+}
+
+/* Estilo para el encabezado (primera fila) */
+.tabla-datos thead tr th {
+  font-weight: 700;
+  background-color: #134e89;
+  color: white;
+  height: 50px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.tabla-datos thead tr th:hover {
+  background-color: #0f3d6d;
+}
+
+/* Footer */
+.tabla-datos tfoot td {
+  background-color: #2087ee;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 12px;
 }
 
 .pie {
@@ -123,9 +141,11 @@ body {
     border-radius: 5px;
     width: 80%;
     height: 80%;
+    max-height: 90vh;
     display: flex;
     flex-direction: column;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    background-color: #9be5f6;
 }
 
 #encabezado_modal {
@@ -133,11 +153,15 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px;
+    padding: 10px 15px;
+    flex-shrink: 0;
 }
 
 #contenido_modal {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 #contenido_modal iframe {
@@ -157,12 +181,12 @@ body {
     color: #920606;
 }
 
-.encabezadoFromulario {
+.encabezadoFormulario {
   background: #2087ee;
   text-align: center;
   padding: 12px 8px;
   border-bottom: 3px solid #2b7bca;
-  height: 10%;
+  flex-shrink: 0;
 }
 
 .principalFormulario {
@@ -170,7 +194,7 @@ body {
   padding: 24px;
   display: flex;
   justify-content: center;
-  height: 80%;
+  flex: 1;
 }
 
 .pieFormulario {
@@ -178,7 +202,7 @@ body {
     text-align: center;
     padding: 10px;
     border-top: 3px solid #2b7bca;
-    height: 10%;
+    flex-shrink: 0;
 }
 
 .formulario-alta {
@@ -227,5 +251,49 @@ label {
   border: 1px solid #cfc9d0;
   cursor: pointer;
   border-radius: 4px;
+}
+
+/* Estilos para la respuesta dentro del modal */
+.respuesta-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.respuesta-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.respuesta-tabla th,
+.respuesta-tabla td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+
+.respuesta-tabla tr:first-child {
+  background-color: #e3f2fd;
+}
+
+.respuesta-tabla th {
+  font-weight: bold;
+}
+
+.btn-volver {
+  background-color: #134e89;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-volver:hover {
+  background-color: #0d3a66;
 }
 

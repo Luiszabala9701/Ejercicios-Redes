@@ -1,3 +1,32 @@
+<?php
+$DB_HOST = 'auth-db887.hstgr.io';
+$DB_NAME = 'u889835150_Encabezado_Fac';
+$DB_USER = 'u889835150_luisz9701';      
+$DB_PASS = 's+XxKG4=bV';        
+
+define('ERROR_LOG_FILE', __DIR__ . '/errores.log');
+
+function obtenerConexion() {
+    global $DB_HOST, $DB_NAME, $DB_USER, $DB_PASS;
+    $dsn = "mysql:host={$DB_HOST};dbname={$DB_NAME};charset=utf8mb4";
+
+    try {
+        $pdo = new PDO($dsn, $DB_USER, $DB_PASS, [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ]);
+        return $pdo;
+    } catch (PDOException $e) {
+        $msg = date('Y-m-d H:i:s') . " - Error conexión DB: " . $e->getMessage() . PHP_EOL;
+        error_log($msg, 3, ERROR_LOG_FILE);
+        http_response_code(500);
+        echo json_encode(['error' => 'Error en conexión con la base de datos.']);
+        exit;
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
