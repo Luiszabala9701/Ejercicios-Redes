@@ -8,24 +8,31 @@
   --muted:#cfcfcf;
 }
 body{font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;background:#fff;margin:0;color:#eee}
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:var(--header-bg);border-bottom:4px solid var(--muted)}
-.topbar h1{margin:0;font-size:28px;color:#222}
-.controls{display:flex;align-items:center;gap:10px}
-.controls button{padding:14px 22px;border:1px solid #ddd;background:#efe;color:#222;border-radius:4px;cursor:pointer}
-.controls .orden-label{font-weight:600;margin-right:6px}
-.controls .orden-select{padding:12px;min-width:160px}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:var(--header-bg);border-bottom:4px solid var(--muted)}
+.topbar h1{margin:0;font-size:36px;color:#111;font-weight:700}
+.controls{display:flex;align-items:center;gap:12px}
+.controls button{padding:14px 26px;border:1px solid #bfbfbf;background:#f3f3f3;color:#222;border-radius:4px;cursor:pointer;box-shadow:0 1px 0 rgba(0,0,0,0.04)}
+.controls .orden-label{font-weight:700;margin-right:6px;color:#222}
+.controls .orden-select{padding:14px;min-width:220px;border:1px solid #ccc;background:white;border-radius:4px}
 
-.main-board{padding:8px}
+.main-board{padding:6px}
 .table-wrap{overflow:auto}
 table{width:100%;border-collapse:collapse}
 thead .header-row{background:var(--red);color:#fff}
 thead .filter-row{background:var(--red);color:#fff}
 thead th{padding:18px 12px;text-align:left}
-.filter-row th input, .filter-row th select{width:100%;box-sizing:border-box;padding:12px;border:0}
+.filter-row th input, .filter-row th select{width:100%;box-sizing:border-box;padding:18px;border:2px solid #ddd;background:white;border-radius:2px;height:72px}
+/* dejar inputs grandes y visualmente como en la imagen */
+.filter-row th select{appearance:auto}
 tbody tr{background:var(--row1)}
 tbody tr:nth-child(even){background:var(--row2)}
-tbody td{padding:22px 12px;border-top:1px solid rgba(255,255,255,0.04);color:#fff}
-.btn-mini{padding:6px 10px;border-radius:4px;background:#fff;color:#333;border:1px solid #ccc}
+tbody td{padding:20px 22px;border-top:1px solid rgba(255,255,255,0.04);color:#fff;vertical-align:middle}
+.btn-mini{padding:6px 10px;border-radius:3px;background:#fff;color:#111;border:2px solid #ddd;font-weight:600}
+.btn-mini:active{transform:translateY(1px)}
+
+/* make PDF/Modi/Borrar buttons small white boxes like the screenshot */
+.cell-actions{display:flex;gap:10px;align-items:center}
+.cell-actions .btn-mini{min-width:54px;text-align:center}
 
 /* modal */
 .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);z-index:200}
