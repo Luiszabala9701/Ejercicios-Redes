@@ -1,20 +1,9 @@
 <?php
-// Compatibilidad: wrapper para proyectos que usan conectarBaseDatos()
-require_once __DIR__ . '/datosConexionBase.inc.php';
-
-if (!function_exists('conectarBaseDatos')) {
-  function conectarBaseDatos() {
-    return obtenerPdo();
-  }
-}
-
-?>
-<?php
-// datosConexionBase.php
+// datosConexionBase.php - Conexión a la base de datos
 function conectarBaseDatos() {
   $servidor = "localhost";
-  $usuario  = "u889835150_luisz9701";
-  $clave    = "s+XxKG4=bV";
+  $usuario  = "root";
+  $clave    = "";
   $base     = "u889835150_Encabezado_Fac";
 
   try {
@@ -24,7 +13,7 @@ function conectarBaseDatos() {
     ]);
     return $pdo;
   } catch (PDOException $e) {
-    $puntero = fopen("./errores.log","a");
+    $puntero = fopen(__DIR__."/errores.log","a");
     fwrite($puntero, date("Y-m-d H:i")." | Error conexión: ".$e->getMessage()."\n");
     fclose($puntero);
     http_response_code(500);
@@ -32,3 +21,4 @@ function conectarBaseDatos() {
     exit;
   }
 }
+?>
