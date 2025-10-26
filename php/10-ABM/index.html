@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>ABM Facturas</title>
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+  <div id="contenedor" class="contenedor">
+    <header class="encabezado">
+      <h1>Facturas</h1>
+      <div class="cont-botones">
+        <input type="text" id="NroFacturaFiltro" placeholder="Filtrar NroFactura" />
+        <input type="text" id="CodProveedorFiltro" placeholder="Filtrar CodProveedor" />
+        <input type="text" id="DomicilioProveedorFiltro" placeholder="Filtrar Domicilio" />
+        <input type="date" id="FechaFacturaFiltro" />
+        <select id="CodPlazoFiltro"></select>
+
+        <button id="btn-cargar" class="btn">Cargar datos</button>
+        <button id="btn-vaciar" class="btn">Vaciar datos</button>
+        <button id="btn-alta" class="btn">Alta registro</button>
+      </div>
+    </header>
+
+    <main class="principal">
+      <div id="contenedor-tabla" class="contenedor-tabla"></div>
+    </main>
+
+    <footer class="pie">
+      <p>Programación en ambiente de redes - 2025</p>
+      <p>Alumno: Luis Zabala</p>
+      <p>Mail: <i>luis.zabala@comunidad.ub.edu.ar</i></p>
+    </footer>
+  </div>
+
+  <!-- Modal Formulario (Alta/Modi: reutilizamos misma ventana) -->
+  <div id="ventanaModalFormulario" class="modal" style="visibility:hidden;">
+    <div class="modal-contenido">
+      <div class="modal-encabezado">
+        <h2 id="tituloModalForm">Formulario</h2>
+        <button id="cerrarModalForm" class="bt-cerrar">X</button>
+      </div>
+      <div class="modal-cuerpo">
+        <form id="formArticulos" method="post" enctype="multipart/form-data">
+          <ul>
+            <li>
+              <label>NroFactura:</label>
+              <input id="entNroFactura" name="NroFactura" required />
+            </li>
+            <li>
+              <label>CodProveedor:</label>
+              <input id="entCodProveedor" name="CodProveedor" required />
+            </li>
+            <li>
+              <label>Domicilio proveedor:</label>
+              <input id="entDomicilioProveedor" name="DomicilioProveedor" required />
+            </li>
+            <li>
+              <label>Fecha factura:</label>
+              <input type="date" id="entFechaFactura" name="FechaFactura" required />
+            </li>
+            <li>
+              <label>Plazo de entrega:</label>
+              <select id="entPlazo" name="CodPlazosEntrega" required></select>
+            </li>
+            <li>
+              <label>Total neto factura:</label>
+              <input type="number" step="0.01" id="entTotal" name="TotalNetoFactura" required />
+            </li>
+            <li>
+              <label>PDF comprobante (opcional):</label>
+              <input type="file" id="entPdf" name="PdfComprobante" accept="application/pdf" />
+            </li>
+          </ul>
+
+          <div class="modal-pie">
+            <button type="button" id="btEnviarAlta" class="btn" disabled>Enviar Alta</button>
+            <button type="button" id="btEnviarModi" class="btn" disabled>Enviar Modificación</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Respuesta del servidor -->
+  <div id="ventanaModalRespuesta" class="modal" style="visibility:hidden;">
+    <div class="modal-contenido">
+      <div class="modal-encabezado">
+        <h2 id="encabezadoModalRespuesta">Respuesta del servidor</h2>
+        <button id="cerrarModalRespuesta" class="bt-cerrar">X</button>
+      </div>
+      <div id="contenidoModalRespuesta" class="modal-cuerpo"></div>
+    </div>
+  </div>
+
+  <!-- Modal PDF -->
+  <div id="ventanaModalPdf" class="modal" style="visibility:hidden;">
+    <div class="modal-contenido">
+      <div class="modal-encabezado">
+        <h2>Documento PDF</h2>
+        <button id="cerrarModalPdf" class="bt-cerrar">X</button>
+      </div>
+      <div id="contenidoModalPdf" class="modal-cuerpo"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
