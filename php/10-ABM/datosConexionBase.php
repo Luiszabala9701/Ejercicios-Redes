@@ -1,7 +1,7 @@
 <?php
 
 function conectarBaseDatos() {
-    $servidor = "host";     
+    $servidor = "localhost";     
     $usuario = "u889835150_luisz9701";           
     $clave = "s+XxKG4=bV";                 
     $baseDatos = "u889835150_Encabezado_Fac";
