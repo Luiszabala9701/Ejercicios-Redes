@@ -1,5 +1,5 @@
 <?php
-$DB_HOST = 'auth-db887.hstgr.io';
+$DB_HOST = 'host';
 $DB_NAME = 'u889835150_Encabezado_Fac';
 $DB_USER = 'u889835150_luisz9701';      
 $DB_PASS = 's+XxKG4=bV';        
