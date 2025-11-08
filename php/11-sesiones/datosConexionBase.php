@@ -3,7 +3,7 @@
 function conectarBaseDatos() {
   $servidor = "localhost";
   $usuario  = "u889835150_luis9701";
-  $clave    = "Factura.123";
+  $clave    = "Facturita123";
   $base     = "u889835150_encabezadoFact";
 
   try {
