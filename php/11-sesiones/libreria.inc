@@ -13,6 +13,9 @@ function autenticarUsuario($nombreUsuario, $clave) {
   try {
     $pdo = conectarBaseDatos();
     
+    // Encriptar la contraseña ingresada con SHA-256
+    $claveEncriptada = hash('sha256', $clave);
+    
     // Preparar consulta para buscar usuario
     $sql = "SELECT idUsuario, nombreUsuario, apellido, nombres, contador 
             FROM usuario 
@@ -21,7 +24,7 @@ function autenticarUsuario($nombreUsuario, $clave) {
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
       ':usuario' => $nombreUsuario,
-      ':clave' => $clave
+      ':clave' => $claveEncriptada
     ]);
     
     $usuario = $stmt->fetch();
