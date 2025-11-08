@@ -17,7 +17,16 @@ function conectarBaseDatos() {
     fwrite($puntero, date("Y-m-d H:i")." | Error conexión: ".$e->getMessage()."\n");
     fclose($puntero);
     http_response_code(500);
-    echo "Error en conexión con la base.";
+    echo "<h3>Error en conexión con la base.</h3>";
+    echo "<p><strong>Detalles del error:</strong></p>";
+    echo "<pre>" . htmlspecialchars($e->getMessage()) . "</pre>";
+    echo "<p><strong>Información de conexión:</strong></p>";
+    echo "<ul>";
+    echo "<li>Servidor: $servidor</li>";
+    echo "<li>Usuario: $usuario</li>";
+    echo "<li>Base de datos: $base</li>";
+    echo "<li>Código de error: " . $e->getCode() . "</li>";
+    echo "</ul>";
     exit;
   }
 }
