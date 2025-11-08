@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Sistema de Gestión</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body class="pagina-login">
+  <div class="contenedor-login">
+    <div class="encabezado-login">
+      <h1>Ingreso</h1>
+      <p>Sistema de Gestión de Facturas</p>
+    </div>
+
+    <!-- Información de credenciales -->
+    <div class="info-credenciales">
+      <p>Usuario: <span>ubluis9</span></p>
+      <p>Clave: <span>jaja</span></p>
+    </div>
+
+    <form action="ingresoAlSistema.php" method="POST" id="formularioLogin">
+      <div class="grupo-formulario">
+        <label for="login">login:</label>
+        <input 
+          type="text" 
+          id="login" 
+          name="login" 
+          required 
+          autocomplete="username"
+          placeholder=""
+        >
+      </div>
+
+      <div class="grupo-formulario">
+        <label for="clave">clave:</label>
+        <input 
+          type="password" 
+          id="clave" 
+          name="clave" 
+          required 
+          autocomplete="current-password"
+          placeholder=""
+        >
+      </div>
+
+      <button type="submit" class="boton-ingresar">Ingresar</button>
+    </form>
+
+    <div class="pie-login">
+      <p>&copy; 2025 Sistema de Gestión. Todos los derechos reservados.</p>
+    </div>
+  </div>
+
+  <script>
+    if (window.location.search.includes('error=1')) {
+      alert('Usuario o contraseña incorrectos');
+    }
+  </script>
+</body>
+</html>

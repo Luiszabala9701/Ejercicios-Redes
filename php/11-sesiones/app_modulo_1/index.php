@@ -1,3 +1,11 @@
+<?php
+// Protección de sesión
+session_start();
+include __DIR__ . '/../manejoSesion.inc';
+
+// Obtener datos del usuario
+$nombreUsuario = $_SESSION['usuario_apellido'] . ' ' . $_SESSION['usuario_nombres'];
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,15 +19,20 @@
     <div class="controls">
       <label class="orden-label">Orden:</label>
       <select id="selectOrden" class="orden-select">
-        <option value="NroFactura">NroFactura</option>
+        <option value="">-- Seleccione --</option>
+        <option value="NroFactura" selected>NroFactura</option>
         <option value="CodProveedor">CodProveedor</option>
+        <option value="DomicilioProveedor">DomicilioProveedor</option>
         <option value="FechaFactura">FechaFactura</option>
+        <option value="CodPlazosEntrega">CodPlazosEntrega</option>
+        <option value="TotalNetoFactura">TotalNetoFactura</option>
       </select>
 
       <button id="btn-cargar">Cargar datos</button>
       <button id="btn-vaciar">Vaciar datos</button>
       <button id="btn-limpiar">Limpiar filtros</button>
       <button id="btn-alta">Alta registro</button>
+      <button id="btn-cerrar-sesion">Cierra Sesión</button>
     </div>
   </header>
 
@@ -43,7 +56,7 @@
             <th><input id="fDom" type="text"></th>
             <th><input id="fFecha" type="date"></th>
             <th><select id="fPlazo"><option value="">(todos)</option></select></th>
-            <th></th>
+            <th><input id="fTotal" type="number" step="0.01" min="0"></th>
             <th></th>
             <th></th>
           </tr>
@@ -56,11 +69,11 @@
   </main>
 
   <footer class="pie">
-    <p>Registros: <span id="conteoRegistros">0</span> | Tabla: facturas | Usuario: Zabala Luis</p>
+    <p>Registros: <span id="conteoRegistros">0</span> | Tabla: facturas | Usuario: <?php echo htmlspecialchars($nombreUsuario); ?></p>
   </footer>
 
   <!-- Modal Formulario (Alta/Modi: reutilizamos misma ventana) -->
-  <div id="ventanaModalFormulario" class="modal" style="visibility:hidden;">
+  <div id="ventanaModalFormulario" class="modal">
     <div class="modal-contenido">
       <div class="modal-encabezado">
         <h2 id="tituloModalForm">Formulario</h2>
@@ -109,7 +122,7 @@
   </div>
 
   <!-- Modal Respuesta del servidor -->
-  <div id="modalResp" class="modal" style="visibility:hidden;">
+  <div id="modalResp" class="modal">
     <div class="modal-contenido">
       <div class="modal-encabezado">
         <h2>Respuesta del servidor</h2>
@@ -123,14 +136,14 @@
   </div>
 
   <!-- Modal PDF -->
-  <div id="modalPdf" class="modal" style="visibility:hidden;">
+  <div id="modalPdf" class="modal">
     <div class="modal-contenido">
       <div class="modal-encabezado">
         <h2>Documento PDF</h2>
         <button id="closePdf" class="bt-cerrar">X</button>
       </div>
       <div id="pdfBody" class="modal-cuerpo">
-        <iframe id="pdfFrame" style="width:100%;height:80vh;border:0"></iframe>
+        <iframe id="pdfFrame"></iframe>
       </div>
       <div class="modal-pie">
         <button id="btnPdfCerrar" class="btn">Cerrar</button>
@@ -139,5 +152,10 @@
   </div>
 
   <script src="script.js"></script>
+  <script>
+    document.getElementById('btn-cerrar-sesion').addEventListener('click', function() {
+      window.location.href = '../destruirSesion.php';
+    });
+  </script>
 </body>
 </html>

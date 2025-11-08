@@ -1,31 +1,45 @@
 ﻿<?php
 // alta.php - Inserta nueva factura
+session_start();
+include __DIR__ . '/../manejoSesion.inc';
+
 header('Content-Type: text/html; charset=utf-8');
-require_once __DIR__ . '/datosConexionBase.php';
+include __DIR__ . '/../datosConexionBase.php';
 
 $respuesta = "Alta de registro<br>";
 
 try {
   $pdo = conectarBaseDatos();
 
-  $NroFactura       = $_POST['NroFactura']        ?? '';
-  $CodProveedor     = $_POST['CodProveedor']      ?? '';
-  $DomicilioProv    = $_POST['DomicilioProveedor']?? '';
-  $FechaFactura     = $_POST['FechaFactura']      ?? '';
-  $CodPlazosEntrega = $_POST['CodPlazosEntrega']  ?? '';
-  $TotalNeto        = $_POST['TotalNetoFactura']  ?? 0;
+  $nroFactura       = $_POST['NroFactura']        ?? '';
+  $codProveedor     = $_POST['CodProveedor']      ?? '';
+  $domicilioProv    = $_POST['DomicilioProveedor']?? '';
+  $fechaFactura     = $_POST['FechaFactura']      ?? '';
+  $codPlazosEntrega = $_POST['CodPlazosEntrega']  ?? '';
+  $totalNeto        = $_POST['TotalNetoFactura']  ?? 0;
+
+  // Verificar si ya existe el número de factura
+  $sqlVerificar = "SELECT COUNT(*) as total FROM factura WHERE NroFactura = :NroFactura";
+  $stmtVerificar = $pdo->prepare($sqlVerificar);
+  $stmtVerificar->bindParam(':NroFactura', $nroFactura);
+  $stmtVerificar->execute();
+  $resultado = $stmtVerificar->fetch(PDO::FETCH_ASSOC);
+  
+  if ($resultado['total'] > 0) {
+    throw new Exception("El número de factura '$nroFactura' ya existe en la base de datos");
+  }
 
   $sql = "INSERT INTO factura
           (NroFactura, CodProveedor, DomicilioProveedor, FechaFactura, CodPlazosEntrega, TotalNetoFactura)
           VALUES (:NroFactura,:CodProveedor,:DomicilioProveedor,:FechaFactura,:CodPlazosEntrega,:TotalNetoFactura)";
   
   $stmt = $pdo->prepare($sql);
-  $stmt->bindParam(':NroFactura', $NroFactura);
-  $stmt->bindParam(':CodProveedor', $CodProveedor);
-  $stmt->bindParam(':DomicilioProveedor', $DomicilioProv);
-  $stmt->bindParam(':FechaFactura', $FechaFactura);
-  $stmt->bindParam(':CodPlazosEntrega', $CodPlazosEntrega);
-  $stmt->bindParam(':TotalNetoFactura', $TotalNeto);
+  $stmt->bindParam(':NroFactura', $nroFactura);
+  $stmt->bindParam(':CodProveedor', $codProveedor);
+  $stmt->bindParam(':DomicilioProveedor', $domicilioProv);
+  $stmt->bindParam(':FechaFactura', $fechaFactura);
+  $stmt->bindParam(':CodPlazosEntrega', $codPlazosEntrega);
+  $stmt->bindParam(':TotalNetoFactura', $totalNeto);
   $stmt->execute();
   $respuesta .= "Registro insertado correctamente<br>";
 
@@ -37,7 +51,7 @@ try {
       $sql2 = "UPDATE factura SET PdfComprobante=:pdf WHERE NroFactura=:NroFactura";
       $stmt2 = $pdo->prepare($sql2);
       $stmt2->bindParam(':pdf', $contenidoPdf, PDO::PARAM_LOB);
-      $stmt2->bindParam(':NroFactura', $NroFactura);
+      $stmt2->bindParam(':NroFactura', $nroFactura);
       $stmt2->execute();
       $respuesta .= "PDF adjunto guardado<br>";
     } else {
@@ -50,3 +64,4 @@ try {
 }
 
 echo $respuesta;
+

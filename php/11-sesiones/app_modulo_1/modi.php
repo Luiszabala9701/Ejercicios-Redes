@@ -1,19 +1,22 @@
 ﻿<?php
 // modi.php - Modifica un registro de factura
+session_start();
+include __DIR__ . '/../manejoSesion.inc';
+
 header('Content-Type: text/html; charset=utf-8');
-require_once __DIR__ . '/datosConexionBase.php';
+include __DIR__ . '/../datosConexionBase.php';
 
 $respuesta = "Modificación de registro<br>";
 
 try {
   $pdo = conectarBaseDatos();
 
-  $NroFactura       = $_POST['NroFactura']        ?? '';
-  $CodProveedor     = $_POST['CodProveedor']      ?? '';
-  $DomicilioProv    = $_POST['DomicilioProveedor']?? '';
-  $FechaFactura     = $_POST['FechaFactura']      ?? '';
-  $CodPlazosEntrega = $_POST['CodPlazosEntrega']  ?? '';
-  $TotalNeto        = $_POST['TotalNetoFactura']  ?? 0;
+  $nroFactura       = $_POST['NroFactura']        ?? '';
+  $codProveedor     = $_POST['CodProveedor']      ?? '';
+  $domicilioProv    = $_POST['DomicilioProveedor']?? '';
+  $fechaFactura     = $_POST['FechaFactura']      ?? '';
+  $codPlazosEntrega = $_POST['CodPlazosEntrega']  ?? '';
+  $totalNeto        = $_POST['TotalNetoFactura']  ?? 0;
 
   $sql = "UPDATE factura SET
             CodProveedor=:CodProveedor,
@@ -24,12 +27,12 @@ try {
           WHERE NroFactura=:NroFactura";
 
   $stmt = $pdo->prepare($sql);
-  $stmt->bindParam(':CodProveedor', $CodProveedor);
-  $stmt->bindParam(':DomicilioProveedor', $DomicilioProv);
-  $stmt->bindParam(':FechaFactura', $FechaFactura);
-  $stmt->bindParam(':CodPlazosEntrega', $CodPlazosEntrega);
-  $stmt->bindParam(':TotalNetoFactura', $TotalNeto);
-  $stmt->bindParam(':NroFactura', $NroFactura);
+  $stmt->bindParam(':CodProveedor', $codProveedor);
+  $stmt->bindParam(':DomicilioProveedor', $domicilioProv);
+  $stmt->bindParam(':FechaFactura', $fechaFactura);
+  $stmt->bindParam(':CodPlazosEntrega', $codPlazosEntrega);
+  $stmt->bindParam(':TotalNetoFactura', $totalNeto);
+  $stmt->bindParam(':NroFactura', $nroFactura);
   $stmt->execute();
   $respuesta .= "Datos actualizados correctamente<br>";
 
@@ -41,7 +44,7 @@ try {
       $sql2 = "UPDATE factura SET PdfComprobante=:pdf WHERE NroFactura=:NroFactura";
       $stmt2 = $pdo->prepare($sql2);
       $stmt2->bindParam(':pdf', $contenidoPdf, PDO::PARAM_LOB);
-      $stmt2->bindParam(':NroFactura', $NroFactura);
+      $stmt2->bindParam(':NroFactura', $nroFactura);
       $stmt2->execute();
       $respuesta .= "PDF actualizado<br>";
     } else {
@@ -54,3 +57,4 @@ try {
 }
 
 echo $respuesta;
+

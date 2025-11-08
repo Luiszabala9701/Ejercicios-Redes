@@ -1,10 +1,10 @@
 <?php
-// datosConexionBase.php - ConexiÃ³n a la base de datos
+// datosConexionBase.php - Conexión a la base de datos
 function conectarBaseDatos() {
   $servidor = "localhost";
-  $usuario  = "root";
-  $clave    = "";
-  $base     = "encabezado_factura";
+  $usuario  = "u889835150_luis9701";
+  $clave    = "Factura.123";
+  $base     = "u889835150_encabezadoFact";
 
   try {
     $pdo = new PDO("mysql:host=$servidor;dbname=$base;charset=utf8mb4",$usuario,$clave,[
@@ -14,10 +14,10 @@ function conectarBaseDatos() {
     return $pdo;
   } catch (PDOException $e) {
     $puntero = fopen(__DIR__."/errores.log","a");
-    fwrite($puntero, date("Y-m-d H:i")." | Error conexiÃ³n: ".$e->getMessage()."\n");
+    fwrite($puntero, date("Y-m-d H:i")." | Error conexión: ".$e->getMessage()."\n");
     fclose($puntero);
     http_response_code(500);
-    echo "Error en conexiÃ³n con la base.";
+    echo "Error en conexión con la base.";
     exit;
   }
 }

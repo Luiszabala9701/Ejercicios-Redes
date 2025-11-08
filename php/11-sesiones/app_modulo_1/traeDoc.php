@@ -1,11 +1,14 @@
 <?php
 // traeDoc.php - Recupera y sirve un PDF desde la base de datos
+session_start();
+include __DIR__ . '/../manejoSesion.inc';
+
 header('Content-Type: application/pdf');
 header('Content-Disposition: inline; filename="documento.pdf"');
 header('Cache-Control: private, max-age=0, must-revalidate');
 header('Pragma: public');
 
-require_once __DIR__ . '/datosConexionBase.php';
+include __DIR__ . '/../datosConexionBase.php';
 
 // Obtener el número de factura desde GET
 $nroFactura = $_GET['NroFactura'] ?? '';

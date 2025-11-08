@@ -1,16 +1,19 @@
 <?php
 // baja.php - Elimina un registro de factura
+session_start();
+include __DIR__ . '/../manejoSesion.inc';
+
 header('Content-Type: text/html; charset=utf-8');
-require_once __DIR__ . '/datosConexionBase.php';
+include __DIR__ . '/../datosConexionBase.php';
 
 $respuesta = "Baja de registro<br>";
 try {
     $pdo = conectarBaseDatos();
-    $NroFactura = $_POST['NroFactura'] ?? '';
+    $nroFactura = $_POST['NroFactura'] ?? '';
 
     $sql = "DELETE FROM factura WHERE NroFactura = :NroFactura";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':NroFactura', $NroFactura);
+    $stmt->bindParam(':NroFactura', $nroFactura);
     $stmt->execute();
     
     $respuesta .= "Registro eliminado correctamente<br>";
@@ -20,3 +23,4 @@ try {
 }
 
 echo $respuesta;
+

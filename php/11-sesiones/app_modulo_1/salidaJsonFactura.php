@@ -1,6 +1,9 @@
 <?php
+session_start();
+include __DIR__ . '/../manejoSesion.inc';
+
 header('Content-Type: application/json; charset=utf-8');
-require_once "datosConexionBase.php";
+include __DIR__ . '/../datosConexionBase.php';
 
 try {
     $pdo = conectarBaseDatos();
@@ -14,11 +17,13 @@ try {
                 TotalNetoFactura,
                 CASE WHEN PdfComprobante IS NOT NULL THEN 1 ELSE 0 END AS TienePDF
             FROM factura 
-            ORDER BY NroFactura ASC";    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            ORDER BY NroFactura ASC";
     
-    echo json_encode($rows, JSON_UNESCAPED_UNICODE);
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $filas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    echo json_encode($filas, JSON_UNESCAPED_UNICODE);
     
 } catch (PDOException $error) {
     http_response_code(500);
